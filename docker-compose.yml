@@ -1,0 +1,97 @@
+version: '2'
+services:
+  customer-service:
+    container_name: customer-service
+    build:
+      context: customer-service
+      dockerfile: Dockerfile
+    image: customer-service:latest
+    ports:
+      - 50000:50000
+    networks:
+      - spring-cloud-network
+  delivery-service:
+    container_name: delivery-service
+    build:
+      context: delivery-service
+      dockerfile: Dockerfile
+    image: delivery-service:latest
+    ports:
+      - 50001:50001
+    networks:
+      - spring-cloud-network
+  frontend-communication-service:
+    container_name: frontend-communication-service
+    build:
+      context: frontend-communication-service
+      dockerfile: Dockerfile
+    image: frontend-communication-service:latest
+    ports:
+      - 8080:8080
+    networks:
+      - spring-cloud-network
+  loyalty-points-service:
+    container_name: loyalty-points-service
+    build:
+      context: loyalty-points-service
+      dockerfile: Dockerfile
+    image: loyalty-points-service:latest
+    ports:
+      - 50002:50002
+    networks:
+      - spring-cloud-network
+  payment-service:
+    container_name: payment-service
+    build:
+      context: payment-service
+      dockerfile: Dockerfile
+    image: payment-service:latest
+    ports:
+      - 50003:50003
+    networks:
+      - spring-cloud-network
+  pricing-service:
+    container_name: pricing-service
+    build:
+      context: pricing-service
+      dockerfile: Dockerfile
+    image: pricing-service:latest
+    ports:
+      - 50004:50004
+    networks:
+      - spring-cloud-network
+  product-service:
+    container_name: product-service
+    build:
+      context: product-service
+      dockerfile: Dockerfile
+    image: product-service:latest
+    ports:
+      - 50005:50005
+    networks:
+      - spring-cloud-network
+  registry-service:
+    container_name: registry-service
+    build:
+      context: registry-service
+      dockerfile: Dockerfile
+    image: registry-service:latest
+    hostname: registry-service
+    ports:
+      - 8761:8761
+    networks:
+      - spring-cloud-network
+  user-service:
+    container_name: user-service
+    build:
+      context: user-service
+      dockerfile: Dockerfile
+    image: user-service:latest
+    hostname: user-service
+    ports:
+      - 50006:50006
+    networks:
+      - spring-cloud-network
+networks:
+  spring-cloud-network:
+    driver: bridge
