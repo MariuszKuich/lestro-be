@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>pl.mariuszk</groupId>
+    <artifactId>lestro-be</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+
+    <modules>
+        <module>customer-service</module>
+        <module>delivery-service</module>
+        <module>frontend-communication-service</module>
+        <module>loyalty-points-service</module>
+        <module>payment-service</module>
+        <module>pricing-service</module>
+        <module>product-service</module>
+        <module>registry-service</module>
+        <module>user-service</module>
+    </modules>
+
+</project>
