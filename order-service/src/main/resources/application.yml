@@ -1,0 +1,10 @@
+server:
+  port: 50007
+spring:
+  application:
+    name: order-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://registry-service:8761/eureka
+

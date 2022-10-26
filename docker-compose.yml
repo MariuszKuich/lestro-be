@@ -92,6 +92,17 @@ services:
       - 50006:50006
     networks:
       - spring-cloud-network
+  order-service:
+    container_name: order-service
+    build:
+      context: order-service
+      dockerfile: Dockerfile
+    image: order-service:latest
+    hostname: order-service
+    ports:
+      - 50007:50007
+    networks:
+      - spring-cloud-network
 networks:
   spring-cloud-network:
     driver: bridge

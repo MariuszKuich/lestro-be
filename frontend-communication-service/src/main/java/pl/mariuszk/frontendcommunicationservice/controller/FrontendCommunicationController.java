@@ -23,6 +23,7 @@ public class FrontendCommunicationController {
     private final CustomerClient customerClient;
     private final LoyaltyPointsClient loyaltyPointsClient;
     private final UserClient userClient;
+    private final OrderClient orderClient;
 
     @GetMapping("/backend-status")
     public ResponseEntity<String> getBackendStatus() {
@@ -33,7 +34,8 @@ public class FrontendCommunicationController {
                 paymentClient.getStatus() + "\n" +
                 customerClient.getStatus() + "\n" +
                 loyaltyPointsClient.getStatus() + "\n" +
-                userClient.getStatus();
+                userClient.getStatus() + "\n" +
+                orderClient.getStatus();
 
         return ResponseEntity.ok(statusMessage);
     }
