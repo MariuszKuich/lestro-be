@@ -3,7 +3,3 @@ server:
 spring:
   application:
     name: frontend-communication-service
-eureka:
-  client:
-    service-url:
-      defaultZone: http://registry-service:8761/eureka

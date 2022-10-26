@@ -3,8 +3,3 @@ server:
 spring:
   application:
     name: loyalty-points-service
-eureka:
-  client:
-    service-url:
-      defaultZone: http://registry-service:8761/eureka
-

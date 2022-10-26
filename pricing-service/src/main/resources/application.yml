@@ -3,7 +3,3 @@ server:
 spring:
   application:
     name: pricing-service
-eureka:
-  client:
-    service-url:
-      defaultZone: http://registry-service:8761/eureka

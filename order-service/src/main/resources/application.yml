@@ -3,8 +3,3 @@ server:
 spring:
   application:
     name: order-service
-eureka:
-  client:
-    service-url:
-      defaultZone: http://registry-service:8761/eureka
-
