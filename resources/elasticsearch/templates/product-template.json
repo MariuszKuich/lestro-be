@@ -25,7 +25,8 @@
           "index": false
         },
         "img": {
-          "type": "binary"
+          "type": "text",
+          "index": false
         },
         "price": {
           "type": "double",
