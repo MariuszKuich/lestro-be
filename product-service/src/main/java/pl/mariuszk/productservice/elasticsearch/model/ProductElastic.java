@@ -8,7 +8,6 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -33,7 +32,7 @@ public class ProductElastic {
     private List<String> imgLinks;
 
     @Field(name = "price", type = FieldType.Double)
-    private BigDecimal price;
+    private double price;
 
     @Field(name = "height", type = FieldType.Long)
     private int height;
