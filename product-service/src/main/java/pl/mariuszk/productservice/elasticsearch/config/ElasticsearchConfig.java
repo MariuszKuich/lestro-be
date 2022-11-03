@@ -16,6 +16,8 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 @ComponentScan(basePackages = "pl.mariuszk.productservice.elasticsearch")
 public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
 
+    public static int MAX_ES_PAGE_SIZE = 10_000;
+
     @Value("${elasticsearch.clusterAddress}")
     private String esClusterAddress;
 

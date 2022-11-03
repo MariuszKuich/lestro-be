@@ -78,7 +78,7 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
   "width": 7,
   "length": 7,
   "plants": [
-    "ro\u015Bliny polne"
+    "kwiaty polne"
   ]
 }'
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
@@ -126,7 +126,7 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
   "width": 20,
   "length": 20,
   "plants": [
-    "ro\u015Bliny polne"
+    "kwiaty polne"
   ]
 }'
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '

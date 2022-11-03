@@ -12,7 +12,8 @@ public enum ElasticsearchFields {
     PLANTS("plants"),
     HEIGHT("height"),
     WIDTH("width"),
-    LENGTH("length");
+    LENGTH("length"),
+    IMG("img");
 
     private final String name;
 }
