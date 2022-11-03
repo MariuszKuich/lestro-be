@@ -16,5 +16,5 @@ public class ProductDto {
     private String code;
     private double price;
     @JsonProperty("imgLinks")
-    private List<String> img;
+    private List<String> imgs;
 }

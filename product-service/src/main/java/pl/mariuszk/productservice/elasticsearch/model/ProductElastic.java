@@ -28,7 +28,7 @@ public class ProductElastic {
     @Field(name = "description", type = FieldType.Text, index = false)
     private String description;
 
-    @Field(name = "img", type = FieldType.Text, index = false)
+    @Field(name = "imgs", type = FieldType.Text, index = false)
     private List<String> imgLinks;
 
     @Field(name = "price", type = FieldType.Double)

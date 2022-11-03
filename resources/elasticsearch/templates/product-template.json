@@ -24,7 +24,7 @@
           "type": "text",
           "index": false
         },
-        "img": {
+        "imgs": {
           "type": "text",
           "index": false
         },

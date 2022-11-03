@@ -39,7 +39,7 @@ public class ProductService {
         nativeSearchQueryBuilder.withQuery(getBoolQueryBuilderForProductList(request));
         nativeSearchQueryBuilder.withPageable(pageable);
         nativeSearchQueryBuilder.withSourceFilter(new FetchSourceFilter(
-                new String[] { NAME.getName(), CODE.getName(), PRICE.getName(), IMG.getName() }, null));
+                new String[] { NAME.getName(), CODE.getName(), PRICE.getName(), IMGS.getName() }, null));
 
         SearchHits<ProductDto> searchHits = elasticsearchRestTemplate.search(nativeSearchQueryBuilder.build(),
                 ProductDto.class, IndexCoordinates.of(PRODUCT_INDEX.getName()));
