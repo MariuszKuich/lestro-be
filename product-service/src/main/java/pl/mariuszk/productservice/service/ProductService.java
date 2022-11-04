@@ -2,6 +2,7 @@ package pl.mariuszk.productservice.service;
 
 import lombok.RequiredArgsConstructor;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,7 @@ import pl.mariuszk.productservice.model.frontend.ProductDto;
 import pl.mariuszk.productservice.request.ProductRequest;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Objects.nonNull;
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -58,8 +60,8 @@ public class ProductService {
         if (nonNull(request.getName())) {
             boolQueryBuilder.must(wildcardQuery(NAME.getName(), String.format("*%s*", request.getName())));
         }
-        if (nonNull(request.getPriceMin()) && nonNull(request.getPriceMax())) {
-            boolQueryBuilder.must(rangeQuery(PRICE.getName()).gte(request.getPriceMin()).lte(request.getPriceMax()));
+        if (nonNull(request.getPriceMin()) || nonNull(request.getPriceMax())) {
+            boolQueryBuilder.must(buildPriceRangeQuery(request));
         }
         if (nonNull(request.getPlants())) {
             boolQueryBuilder.must(termsQuery(PLANTS.getName(), request.getPlants()));
@@ -75,6 +77,13 @@ public class ProductService {
         }
 
         return boolQueryBuilder;
+    }
+
+    private RangeQueryBuilder buildPriceRangeQuery(ProductRequest request) {
+        RangeQueryBuilder priceRangeQuery = rangeQuery(PRICE.getName());
+        Optional.ofNullable(request.getPriceMin()).ifPresent(priceRangeQuery::gte);
+        Optional.ofNullable(request.getPriceMax()).ifPresent(priceRangeQuery::lte);
+        return priceRangeQuery;
     }
 
     public List<String> getGroupedPlantsFromEveryProduct() {
