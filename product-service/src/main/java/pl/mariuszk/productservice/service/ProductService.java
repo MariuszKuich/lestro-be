@@ -1,6 +1,7 @@
 package pl.mariuszk.productservice.service;
 
 import lombok.RequiredArgsConstructor;
+import ma.glasnost.orika.MapperFacade;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,8 @@ import org.springframework.data.elasticsearch.core.query.FetchSourceFilter;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import pl.mariuszk.productservice.elasticsearch.model.ProductElastic;
+import pl.mariuszk.productservice.elasticsearch.repository.ProductRepository;
+import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.ProductDto;
 import pl.mariuszk.productservice.request.ProductRequest;
 
@@ -33,6 +36,8 @@ public class ProductService {
 
     private final PagingService pagingService;
     private final ElasticsearchRestTemplate elasticsearchRestTemplate;
+    private final ProductRepository productRepository;
+    private final MapperFacade mapperFacade;
 
     public Page<ProductDto> getProductsList(ProductRequest request) {
         Pageable pageable = pagingService.buildPageableFromRequest(request);
@@ -101,5 +106,10 @@ public class ProductService {
                 .distinct()
                 .sorted()
                 .toList();
+    }
+
+    public Optional<ProductDetailsDto> getProductDetails(String code) {
+        return productRepository.findByCode(code)
+                .map(productDetails -> mapperFacade.map(productDetails, ProductDetailsDto.class));
     }
 }
