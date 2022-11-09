@@ -3,3 +3,7 @@ server:
 spring:
   application:
     name: frontend-communication-service
+feign:
+  autoconfiguration:
+    jackson:
+      enabled: true

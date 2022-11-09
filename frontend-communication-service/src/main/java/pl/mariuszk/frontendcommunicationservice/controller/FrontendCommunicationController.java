@@ -1,42 +1,37 @@
 package pl.mariuszk.frontendcommunicationservice.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import pl.mariuszk.frontendcommunicationservice.feign.client.*;
+import org.springframework.web.bind.annotation.*;
+import pl.mariuszk.frontendcommunicationservice.feign.client.ProductClient;
+import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
+import pl.mariuszk.productservice.model.frontend.ProductDto;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/lestro-be")
 @RequiredArgsConstructor
 public class FrontendCommunicationController {
 
-    @Value("${server.port}")
-    private int serverPort;
-
     private final ProductClient productClient;
-    private final PricingClient pricingClient;
-    private final DeliveryClient deliveryClient;
-    private final PaymentClient paymentClient;
-    private final CustomerClient customerClient;
-    private final LoyaltyPointsClient loyaltyPointsClient;
-    private final UserClient userClient;
-    private final OrderClient orderClient;
 
-    @GetMapping("/backend-status")
-    public ResponseEntity<String> getBackendStatus() {
-        String statusMessage = String.format("FrontendCommunicationService: RUNNING (port %s)\n", serverPort) +
-                productClient.getStatus() + "\n" +
-                pricingClient.getStatus() + "\n" +
-                deliveryClient.getStatus() + "\n" +
-                paymentClient.getStatus() + "\n" +
-                customerClient.getStatus() + "\n" +
-                loyaltyPointsClient.getStatus() + "\n" +
-                userClient.getStatus() + "\n" +
-                orderClient.getStatus();
+    @GetMapping("/product/list")
+    public ResponseEntity<Page<ProductDto>> getProductsList(@RequestParam Map<String, String> request) {
+        return ResponseEntity.ok(productClient.getProductsList(request));
+    }
 
-        return ResponseEntity.ok(statusMessage);
+    @GetMapping("/product/available-plants")
+    public ResponseEntity<List<String>> getAvailablePlants() {
+        return ResponseEntity.ok(productClient.getAvailablePlants());
+    }
+
+    @GetMapping("/product/{code}")
+    public ResponseEntity<ProductDetailsDto> getProductDetails(@PathVariable("code") String code) {
+        return productClient.getProductDetails(code)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
