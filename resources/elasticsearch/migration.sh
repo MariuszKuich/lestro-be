@@ -20,7 +20,9 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
   "name": "Stroik S\u0142onecznikowy [OZDOBY]",
   "description": "Stroik z\u0142o\u017Cony z pi\u0119ciu s\u0142onecznik\u00F3w umieszczonych w blaszanym pojemniku. Kompozycja udekorowana jest sztucznymi kolbami kukurydzy oraz dynami.",
   "imgs": [
-    "https://i.ibb.co/r3QF0wR/1.jpg"
+    "https://i.ibb.co/r3QF0wR/1.jpg",
+    "https://i.ibb.co/x7NQZVm/2.jpg",
+    "https://i.ibb.co/Xx424Jj/3.jpg"
   ],
   "price": 59.99,
   "height": 45,
@@ -36,7 +38,9 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
   "name": "R\u00F3\u017Cnokolorowe Pude\u0142ko",
   "description": "Stroik z\u0142o\u017Cony z r\u00F3\u017Cnokolorowych r\u00F3\u017C oraz tulipan\u00F3w umieszczonych w bogato zdobionym pude\u0142ku.",
   "imgs": [
-    "https://i.ibb.co/rkRTpwx/1.jpg"
+    "https://i.ibb.co/rkRTpwx/1.jpg",
+    "https://i.ibb.co/5FSvhy0/2.jpg",
+    "https://i.ibb.co/nQ9D5st/3.jpg"
   ],
   "price": 99.99,
   "height": 25,
@@ -53,7 +57,9 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
   "name": "Bogaty Bukiet",
   "description": "Stroik sk\u0142adaj\u0105cy si\u0119 z wielu r\u00F3\u017Cnokolorowych kwiat\u00F3w umieszczonych w wazonie. Idealny na wesele.",
   "imgs": [
-	  "https://i.ibb.co/WFFs5nQ/1.jpg"
+	  "https://i.ibb.co/WFFs5nQ/1.jpg",
+    "https://i.ibb.co/KwSyqtn/2.jpg",
+    "https://i.ibb.co/mChw3H9/3.jpg"
 	],
   "price": 69.99,
   "height": 50,
