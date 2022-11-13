@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum ElasticsearchFields {
+public enum ElasticsearchField {
     CODE("code"),
     NAME("name"),
     PRICE("price"),

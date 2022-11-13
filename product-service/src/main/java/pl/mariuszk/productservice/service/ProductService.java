@@ -26,8 +26,8 @@ import java.util.Optional;
 import static java.util.Objects.nonNull;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 import static pl.mariuszk.elasticsearch.config.ElasticsearchClientConfig.MAX_ES_PAGE_SIZE;
-import static pl.mariuszk.elasticsearch.enums.ElasticsearchFields.*;
-import static pl.mariuszk.elasticsearch.enums.ElasticsearchIndexes.PRODUCT_INDEX;
+import static pl.mariuszk.elasticsearch.enums.ElasticsearchField.*;
+import static pl.mariuszk.elasticsearch.enums.ElasticsearchIndex.PRODUCT_INDEX;
 
 
 @Service

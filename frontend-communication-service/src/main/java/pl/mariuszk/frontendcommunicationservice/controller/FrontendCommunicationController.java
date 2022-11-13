@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.mariuszk.deliveryservice.model.frontend.DeliveryDto;
+import pl.mariuszk.frontendcommunicationservice.feign.client.DeliveryClient;
 import pl.mariuszk.frontendcommunicationservice.feign.client.ProductClient;
 import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.ProductDto;
@@ -17,6 +19,7 @@ import java.util.Map;
 public class FrontendCommunicationController {
 
     private final ProductClient productClient;
+    private final DeliveryClient deliveryClient;
 
     @GetMapping("/product/list")
     public ResponseEntity<Page<ProductDto>> getProductsList(@RequestParam Map<String, String> request) {
@@ -33,5 +36,10 @@ public class FrontendCommunicationController {
         return productClient.getProductDetails(code)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/delivery/all")
+    public ResponseEntity<List<DeliveryDto>> getAvailableDeliveryMethods() {
+        return ResponseEntity.ok(deliveryClient.getAvailableDeliveryMethods());
     }
 }

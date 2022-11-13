@@ -219,3 +219,19 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
     "jastrun w\u0142a\u015Bciwy"
   ]
 }'
+
+curl -X PUT http://localhost:9200/_index_template/delivery-template -H "Content-Type: application/json" -d @templates/delivery-template.json
+curl -X POST http://localhost:9200/delivery-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "code": "SELF_PICKUP",
+  "icon-class": "bi bi-house-check",
+  "name": "Odbi\u00F3r osobisty",
+  "price": 0
+}'
+curl -X POST http://localhost:9200/delivery-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "code": "PDP",
+  "icon-class": "bi bi-truck",
+  "name": "Kurier PDP",
+  "price": 19.99
+}'
