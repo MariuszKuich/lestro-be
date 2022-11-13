@@ -1,4 +1,4 @@
-package pl.mariuszk.productservice.enums;
+package pl.mariuszk.elasticsearch.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

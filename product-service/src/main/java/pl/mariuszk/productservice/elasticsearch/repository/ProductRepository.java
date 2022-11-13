@@ -1,7 +1,7 @@
 package pl.mariuszk.productservice.elasticsearch.repository;
 
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
-import pl.mariuszk.productservice.elasticsearch.model.ProductElastic;
+import pl.mariuszk.elasticsearch.model.ProductElastic;
 
 import java.util.Optional;
 

@@ -14,7 +14,7 @@ import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.FetchSourceFilter;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
-import pl.mariuszk.productservice.elasticsearch.model.ProductElastic;
+import pl.mariuszk.elasticsearch.model.ProductElastic;
 import pl.mariuszk.productservice.elasticsearch.repository.ProductRepository;
 import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.ProductDto;
@@ -25,9 +25,9 @@ import java.util.Optional;
 
 import static java.util.Objects.nonNull;
 import static org.elasticsearch.index.query.QueryBuilders.*;
-import static pl.mariuszk.productservice.elasticsearch.config.ElasticsearchConfig.MAX_ES_PAGE_SIZE;
-import static pl.mariuszk.productservice.enums.ElasticsearchFields.*;
-import static pl.mariuszk.productservice.enums.ElasticsearchIndexes.PRODUCT_INDEX;
+import static pl.mariuszk.elasticsearch.config.ElasticsearchClientConfig.MAX_ES_PAGE_SIZE;
+import static pl.mariuszk.elasticsearch.enums.ElasticsearchFields.*;
+import static pl.mariuszk.elasticsearch.enums.ElasticsearchIndexes.PRODUCT_INDEX;
 
 
 @Service

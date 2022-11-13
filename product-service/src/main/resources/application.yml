@@ -3,5 +3,3 @@ server:
 spring:
   application:
     name: product-service
-elasticsearch:
-  clusterAddress: localhost:9200

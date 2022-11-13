@@ -1,4 +1,4 @@
-package pl.mariuszk.productservice.elasticsearch.model;
+package pl.mariuszk.elasticsearch.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
