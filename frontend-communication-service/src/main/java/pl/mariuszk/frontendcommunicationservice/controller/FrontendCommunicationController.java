@@ -6,7 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.mariuszk.deliveryservice.model.frontend.DeliveryDto;
 import pl.mariuszk.frontendcommunicationservice.feign.client.DeliveryClient;
+import pl.mariuszk.frontendcommunicationservice.feign.client.PaymentClient;
 import pl.mariuszk.frontendcommunicationservice.feign.client.ProductClient;
+import pl.mariuszk.paymentservice.model.frontend.PaymentDto;
 import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.ProductDto;
 
@@ -20,6 +22,7 @@ public class FrontendCommunicationController {
 
     private final ProductClient productClient;
     private final DeliveryClient deliveryClient;
+    private final PaymentClient paymentClient;
 
     @GetMapping("/product/list")
     public ResponseEntity<Page<ProductDto>> getProductsList(@RequestParam Map<String, String> request) {
@@ -41,5 +44,10 @@ public class FrontendCommunicationController {
     @GetMapping("/delivery/all")
     public ResponseEntity<List<DeliveryDto>> getAvailableDeliveryMethods() {
         return ResponseEntity.ok(deliveryClient.getAvailableDeliveryMethods());
+    }
+
+    @GetMapping("/payment/all")
+    public ResponseEntity<List<PaymentDto>> getAvailablePaymentMethods() {
+        return ResponseEntity.ok(paymentClient.getAvailablePaymentMethods());
     }
 }

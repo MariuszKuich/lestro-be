@@ -1,0 +1,30 @@
+{
+  "index_patterns": [
+    "payment-index"
+  ],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    },
+    "mappings": {
+      "_source": {
+        "enabled": true
+      },
+      "properties": {
+        "code": {
+          "type": "keyword",
+          "index": true
+        },
+        "icon-class": {
+          "type": "keyword",
+          "index": true
+        },
+        "name": {
+          "type": "keyword",
+          "index": true
+        }
+      }
+    }
+  }
+}

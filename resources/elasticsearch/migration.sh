@@ -235,3 +235,17 @@ curl -X POST http://localhost:9200/delivery-index/_doc -H "Content-Type: applica
   "name": "Kurier PDP",
   "price": 19.99
 }'
+
+curl -X PUT http://localhost:9200/_index_template/payment-template -H "Content-Type: application/json" -d @templates/payment-template.json
+curl -X POST http://localhost:9200/payment-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "code": "TRAD_TRANSFER",
+  "icon-class": "bi bi-bank",
+  "name": "Przelew tradycyjny"
+}'
+curl -X POST http://localhost:9200/payment-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "code": "PAY_Y",
+  "icon-class": "bi bi-coin",
+  "name": "PayY"
+}'
