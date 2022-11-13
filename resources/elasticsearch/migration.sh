@@ -224,7 +224,7 @@ curl -X PUT http://localhost:9200/_index_template/delivery-template -H "Content-
 curl -X POST http://localhost:9200/delivery-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
 {
   "code": "SELF_PICKUP",
-  "icon-class": "bi bi-house-check",
+  "icon-class": "bi bi-house",
   "name": "Odbi\u00F3r osobisty",
   "price": 0
 }'
