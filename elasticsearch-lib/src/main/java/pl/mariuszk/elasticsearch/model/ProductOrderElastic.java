@@ -1,6 +1,7 @@
 package pl.mariuszk.elasticsearch.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -12,6 +13,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(indexName = "product-order-index")
+@Builder
 public class ProductOrderElastic {
 
     @Id

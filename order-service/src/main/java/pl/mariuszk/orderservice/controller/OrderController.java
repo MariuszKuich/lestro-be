@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.mariuszk.orderservice.model.frontend.order.OrderDto;
+import pl.mariuszk.orderservice.service.OrderService;
 
 import javax.validation.Valid;
 
@@ -14,8 +15,10 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class OrderController {
 
+    private final OrderService orderService;
+
     @PostMapping("/new")
-    public void createNewOrder(@Valid @RequestBody OrderDto orderDto) {
-        System.out.println(orderDto);
+    public long createNewOrder(@Valid @RequestBody OrderDto orderDto) {
+        return orderService.createNewOrder(orderDto);
     }
 }

@@ -1,6 +1,7 @@
 package pl.mariuszk.elasticsearch.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -13,10 +14,13 @@ import pl.mariuszk.elasticsearch.enums.PaymentCode;
 
 import java.time.LocalDateTime;
 
+import static org.springframework.data.elasticsearch.annotations.DateFormat.date_hour_minute_second_fraction;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(indexName = "order-index")
+@Builder
 public class OrderElastic {
 
     @Id
@@ -25,7 +29,7 @@ public class OrderElastic {
     @Field(name = "order-number", type = FieldType.Long)
     private long orderNumber;
 
-    @Field(name = "created-timestamp", type = FieldType.Date)
+    @Field(name = "created-timestamp", type = FieldType.Date, format = date_hour_minute_second_fraction)
     private LocalDateTime createdTimestamp;
 
     @Field(name = "status", type = FieldType.Keyword)
