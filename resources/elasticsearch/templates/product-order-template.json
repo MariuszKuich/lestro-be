@@ -1,0 +1,42 @@
+{
+  "index_patterns": [
+    "product-order-index"
+  ],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    },
+    "mappings": {
+      "_source": {
+        "enabled": true
+      },
+      "properties": {
+        "order-number": {
+          "type": "long",
+          "index": true
+        },
+        "quantity": {
+          "type": "long",
+          "index": true
+        },
+        "code": {
+          "type": "keyword",
+          "index": true
+        },
+        "name": {
+          "type": "keyword",
+          "index": true
+        },
+        "img": {
+          "type": "text",
+          "index": false
+        },
+        "price": {
+          "type": "double",
+          "index": true
+        }
+      }
+    }
+  }
+}

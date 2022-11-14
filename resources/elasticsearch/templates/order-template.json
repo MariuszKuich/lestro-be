@@ -1,0 +1,74 @@
+{
+  "index_patterns": [
+    "order-index"
+  ],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    },
+    "mappings": {
+      "_source": {
+        "enabled": true
+      },
+      "properties": {
+        "order-number": {
+          "type": "long",
+          "index": true
+        },
+        "created-timestamp": {
+          "type": "date",
+          "index": true
+        },
+        "status": {
+          "type": "keyword",
+          "index": true
+        },
+        "paid": {
+          "type": "boolean",
+          "index": true
+        },
+        "delivery-method": {
+          "type": "keyword",
+          "index": true
+        },
+        "payment-method": {
+          "type": "keyword",
+          "index": true
+        },
+        "name": {
+          "type": "keyword",
+          "index": true
+        },
+        "surname": {
+          "type": "keyword",
+          "index": true
+        },
+        "mail": {
+          "type": "keyword",
+          "index": true
+        },
+        "street": {
+          "type": "keyword",
+          "index": true
+        },
+        "house-no": {
+          "type": "keyword",
+          "index": true
+        },
+        "apartment-no": {
+          "type": "keyword",
+          "index": true
+        },
+        "zip-code": {
+          "type": "keyword",
+          "index": true
+        },
+        "city": {
+          "type": "keyword",
+          "index": true
+        }
+      }
+    }
+  }
+}

@@ -1,13 +1,16 @@
 package pl.mariuszk.frontendcommunicationservice.controller;
 
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.mariuszk.deliveryservice.model.frontend.DeliveryDto;
 import pl.mariuszk.frontendcommunicationservice.feign.client.DeliveryClient;
+import pl.mariuszk.frontendcommunicationservice.feign.client.OrderClient;
 import pl.mariuszk.frontendcommunicationservice.feign.client.PaymentClient;
 import pl.mariuszk.frontendcommunicationservice.feign.client.ProductClient;
+import pl.mariuszk.orderservice.model.frontend.order.OrderDto;
 import pl.mariuszk.paymentservice.model.frontend.PaymentDto;
 import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.ProductDto;
@@ -23,6 +26,7 @@ public class FrontendCommunicationController {
     private final ProductClient productClient;
     private final DeliveryClient deliveryClient;
     private final PaymentClient paymentClient;
+    private final OrderClient orderClient;
 
     @GetMapping("/product/list")
     public ResponseEntity<Page<ProductDto>> getProductsList(@RequestParam Map<String, String> request) {
@@ -49,5 +53,17 @@ public class FrontendCommunicationController {
     @GetMapping("/payment/all")
     public ResponseEntity<List<PaymentDto>> getAvailablePaymentMethods() {
         return ResponseEntity.ok(paymentClient.getAvailablePaymentMethods());
+    }
+
+    @PostMapping("/order/new")
+    public ResponseEntity<String> createNewOrder(@RequestBody OrderDto orderDto) {
+        try {
+            long orderNumber = orderClient.createNewOrder(orderDto);
+            return ResponseEntity.ok(Long.toString(orderNumber));
+        } catch (FeignException.BadRequest e) {
+            return ResponseEntity.badRequest().body("Bad request - invalid data");
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Internal server error");
+        }
     }
 }

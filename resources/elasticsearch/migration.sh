@@ -249,3 +249,6 @@ curl -X POST http://localhost:9200/payment-index/_doc -H "Content-Type: applicat
   "icon-class": "bi bi-coin",
   "name": "PayY"
 }'
+
+curl -X PUT http://localhost:9200/_index_template/order-template -H "Content-Type: application/json" -d @templates/order-template.json
+curl -X PUT http://localhost:9200/_index_template/product-order-template -H "Content-Type: application/json" -d @templates/product-order-template.json
