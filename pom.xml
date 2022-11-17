@@ -18,7 +18,6 @@
         <module>customer-service</module>
         <module>delivery-service</module>
         <module>frontend-communication-service</module>
-        <module>loyalty-points-service</module>
         <module>payment-service</module>
         <module>pricing-service</module>
         <module>product-service</module>

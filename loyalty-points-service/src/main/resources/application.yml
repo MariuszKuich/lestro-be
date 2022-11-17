@@ -1,5 +1,0 @@
-server:
-  port: 50002
-spring:
-  application:
-    name: loyalty-points-service
