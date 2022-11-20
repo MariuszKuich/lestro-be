@@ -6,12 +6,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.mariuszk.deliveryservice.model.frontend.DeliveryDto;
+import pl.mariuszk.elasticsearch.enums.CompositionElemType;
 import pl.mariuszk.frontendcommunicationservice.feign.client.DeliveryClient;
 import pl.mariuszk.frontendcommunicationservice.feign.client.OrderClient;
 import pl.mariuszk.frontendcommunicationservice.feign.client.PaymentClient;
 import pl.mariuszk.frontendcommunicationservice.feign.client.ProductClient;
 import pl.mariuszk.orderservice.model.frontend.order.OrderDto;
 import pl.mariuszk.paymentservice.model.frontend.PaymentDto;
+import pl.mariuszk.productservice.model.frontend.CompositionElementDto;
 import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.ProductDto;
 
@@ -43,6 +45,11 @@ public class FrontendCommunicationController {
         return productClient.getProductDetails(code)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/product/configurator/options")
+    public ResponseEntity<Map<CompositionElemType, List<CompositionElementDto>>> getAvailableConfiguratorOptions() {
+        return ResponseEntity.ok(productClient.getAvailableConfiguratorOptions());
     }
 
     @GetMapping("/delivery/all")

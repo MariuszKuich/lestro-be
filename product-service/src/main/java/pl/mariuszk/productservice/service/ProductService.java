@@ -14,14 +14,20 @@ import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.FetchSourceFilter;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
+import pl.mariuszk.elasticsearch.enums.CompositionElemType;
 import pl.mariuszk.elasticsearch.model.ProductElastic;
+import pl.mariuszk.productservice.elasticsearch.repository.ConfiguratorRepository;
 import pl.mariuszk.productservice.elasticsearch.repository.ProductRepository;
+import pl.mariuszk.productservice.model.frontend.CompositionElementDto;
 import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.ProductDto;
 import pl.mariuszk.productservice.request.ProductRequest;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import static java.util.Objects.nonNull;
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -37,6 +43,7 @@ public class ProductService {
     private final PagingService pagingService;
     private final ElasticsearchRestTemplate elasticsearchRestTemplate;
     private final ProductRepository productRepository;
+    private final ConfiguratorRepository configuratorRepository;
     private final MapperFacade mapperFacade;
 
     public Page<ProductDto> getProductsList(ProductRequest request) {
@@ -111,5 +118,12 @@ public class ProductService {
     public Optional<ProductDetailsDto> getProductDetails(String code) {
         return productRepository.findByCode(code)
                 .map(productDetails -> mapperFacade.map(productDetails, ProductDetailsDto.class));
+    }
+
+    public Map<CompositionElemType, List<CompositionElementDto>> getAvailableConfiguratorOptions() {
+        boolean sequentialStream = true;
+        return StreamSupport.stream(configuratorRepository.findAll().spliterator(), sequentialStream)
+                .map(elemElastic -> mapperFacade.map(elemElastic, CompositionElementDto.class))
+                .collect(Collectors.groupingBy(CompositionElementDto::getType));
     }
 }

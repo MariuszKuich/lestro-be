@@ -252,3 +252,103 @@ curl -X POST http://localhost:9200/payment-index/_doc -H "Content-Type: applicat
 
 curl -X PUT http://localhost:9200/_index_template/order-template -H "Content-Type: application/json" -d @templates/order-template.json
 curl -X PUT http://localhost:9200/_index_template/product-order-template -H "Content-Type: application/json" -d @templates/product-order-template.json
+
+curl -X PUT http://localhost:9200/_index_template/configurator-template -H "Content-Type: application/json" -d @templates/configurator-template.json
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "PLANT",
+  "code": "t1",
+  "name": "Zamioculcas",
+  "price": 59.99
+}'
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "PLANT",
+  "code": "t2",
+  "name": "Skrzyd\u0142okwiat Cupido",
+  "price": 29.99
+}'
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "PLANT",
+  "code": "t3",
+  "name": "Saintpaulia",
+  "price": 34.99
+}'
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "PLANT",
+  "code": "t4",
+  "name": "Nefrolepis Exaltata",
+  "price": 32.99
+}'
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "DECORATION",
+  "code": "",
+  "name": "Brak",
+  "price": 0
+}'
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "DECORATION",
+  "code": "d1",
+  "name": "Kamyki z\u0142ote",
+  "price": 14.99
+}'
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "DECORATION",
+  "code": "d2",
+  "name": "Kamyki czerwone",
+  "price": 14.99
+}'
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "ORNAMENT",
+  "code": "",
+  "name": "Brak",
+  "price": 0
+}'
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "ORNAMENT",
+  "code": "o1",
+  "name": "Gwiazdki",
+  "price": 7.99
+}'
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "ORNAMENT",
+  "code": "o2",
+  "name": "Wi\u015Bnie (sztuczne)",
+  "price": 4.99
+}'
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "ORNAMENT",
+  "code": "o3",
+  "name": "\u0141a\u0144cuch \u015Bwi\u0105teczny",
+  "price": 6.99
+}'
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "POT",
+  "code": "p1",
+  "name": "Doniczka safari",
+  "price": 19.99
+}'
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "POT",
+  "code": "p2",
+  "name": "Doniczka pod\u0142u\u017Cna",
+  "price": 24.99
+}'
+curl -X POST http://localhost:9200/configurator-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
+{
+  "type": "POT",
+  "code": "p3",
+  "name": "Doniczka czarno-z\u0142ota",
+  "price": 14.99
+}'
