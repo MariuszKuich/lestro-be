@@ -3,7 +3,7 @@ package pl.mariuszk.productservice.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import pl.mariuszk.elasticsearch.enums.CompositionElemType;
+import pl.mariuszk.common.enums.CompositionElemType;
 import pl.mariuszk.productservice.model.frontend.CompositionElementDto;
 import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.ProductDto;

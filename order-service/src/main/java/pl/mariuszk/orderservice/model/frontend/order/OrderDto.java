@@ -3,8 +3,8 @@ package pl.mariuszk.orderservice.model.frontend.order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.mariuszk.elasticsearch.enums.DeliveryCode;
-import pl.mariuszk.elasticsearch.enums.PaymentCode;
+import pl.mariuszk.common.enums.DeliveryCode;
+import pl.mariuszk.common.enums.PaymentCode;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;

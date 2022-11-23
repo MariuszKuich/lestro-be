@@ -14,11 +14,11 @@
       "properties": {
         "type": {
           "type": "keyword",
-          "index": false
+          "index": true
         },
         "code": {
           "type": "keyword",
-          "index": false
+          "index": true
         },
         "name": {
           "type": "keyword",

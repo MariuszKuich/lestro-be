@@ -3,7 +3,7 @@ package pl.mariuszk.deliveryservice.model.frontend;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.mariuszk.elasticsearch.enums.DeliveryCode;
+import pl.mariuszk.common.enums.DeliveryCode;
 
 @Data
 @NoArgsConstructor

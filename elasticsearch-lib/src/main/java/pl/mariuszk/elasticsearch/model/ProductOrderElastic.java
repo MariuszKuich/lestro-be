@@ -36,4 +36,16 @@ public class ProductOrderElastic {
 
     @Field(name = "price", type = FieldType.Double)
     private double price;
+
+    @Field(name = "plantName", type = FieldType.Keyword)
+    private String plantName;
+
+    @Field(name = "decorationName", type = FieldType.Keyword)
+    private String decorationName;
+
+    @Field(name = "ornamentName", type = FieldType.Keyword)
+    private String ornamentName;
+
+    @Field(name = "potName", type = FieldType.Keyword)
+    private String potName;
 }

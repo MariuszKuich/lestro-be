@@ -17,4 +17,18 @@ public class OrderItemDto {
 
     @Min(1)
     private int quantity;
+
+    @NotBlank
+    private String name;
+
+    @NotBlank
+    private String img;
+
+    private String plantCode;
+
+    private String decorationCode;
+
+    private String ornamentCode;
+
+    private String potCode;
 }

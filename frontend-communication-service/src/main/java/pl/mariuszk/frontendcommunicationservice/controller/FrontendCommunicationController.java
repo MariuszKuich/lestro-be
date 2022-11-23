@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.mariuszk.deliveryservice.model.frontend.DeliveryDto;
-import pl.mariuszk.elasticsearch.enums.CompositionElemType;
+import pl.mariuszk.common.enums.CompositionElemType;
 import pl.mariuszk.frontendcommunicationservice.feign.client.DeliveryClient;
 import pl.mariuszk.frontendcommunicationservice.feign.client.OrderClient;
 import pl.mariuszk.frontendcommunicationservice.feign.client.PaymentClient;
@@ -67,8 +67,8 @@ public class FrontendCommunicationController {
         try {
             long orderNumber = orderClient.createNewOrder(orderDto);
             return ResponseEntity.ok(Long.toString(orderNumber));
-        } catch (FeignException.BadRequest e) {
-            return ResponseEntity.badRequest().body("Bad request - invalid data");
+        } catch (FeignException.NotFound e) {
+            return ResponseEntity.badRequest().body("Bad request - product with given code not found");
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body("Internal server error");
         }

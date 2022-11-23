@@ -3,7 +3,7 @@ package pl.mariuszk.orderservice.config.orika;
 import ma.glasnost.orika.CustomConverter;
 import ma.glasnost.orika.MappingContext;
 import ma.glasnost.orika.metadata.Type;
-import pl.mariuszk.elasticsearch.enums.OrderStatus;
+import pl.mariuszk.common.enums.OrderStatus;
 import pl.mariuszk.elasticsearch.model.OrderElastic;
 import pl.mariuszk.orderservice.model.frontend.order.OrderDto;
 

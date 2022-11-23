@@ -14,7 +14,7 @@ import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.FetchSourceFilter;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
-import pl.mariuszk.elasticsearch.enums.CompositionElemType;
+import pl.mariuszk.common.enums.CompositionElemType;
 import pl.mariuszk.elasticsearch.model.ProductElastic;
 import pl.mariuszk.productservice.elasticsearch.repository.ConfiguratorRepository;
 import pl.mariuszk.productservice.elasticsearch.repository.ProductRepository;

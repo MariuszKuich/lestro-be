@@ -13,7 +13,8 @@ public enum ElasticsearchField {
     HEIGHT("height"),
     WIDTH("width"),
     LENGTH("length"),
-    IMGS("imgs");
+    IMGS("imgs"),
+    TYPE("type");
 
     private final String name;
 }

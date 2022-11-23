@@ -7,22 +7,22 @@ import ma.glasnost.orika.converter.ConverterFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import pl.mariuszk.orderservice.config.orika.OrderDtoConverter;
 import pl.mariuszk.orderservice.config.orika.OrderItemDtoConverter;
-import pl.mariuszk.orderservice.elasticsearch.repository.ProductRepository;
 
 @Configuration
 @RequiredArgsConstructor
 public class OrikaConfig {
 
-    private final ProductRepository productRepository;
+    private final ElasticsearchRestTemplate elasticsearchRestTemplate;
 
     @Bean
     public MapperFacade getMapperFacadeBean() {
         MapperFactory mapperFactory =  new DefaultMapperFactory.Builder().useAutoMapping(true).build();
         ConverterFactory converterFactory = mapperFactory.getConverterFactory();
         converterFactory.registerConverter(new OrderDtoConverter());
-        converterFactory.registerConverter(new OrderItemDtoConverter(productRepository));
+        converterFactory.registerConverter(new OrderItemDtoConverter(elasticsearchRestTemplate));
         return mapperFactory.getMapperFacade();
     }
 }

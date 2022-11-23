@@ -3,7 +3,7 @@ package pl.mariuszk.productservice.model.frontend;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.mariuszk.elasticsearch.enums.CompositionElemType;
+import pl.mariuszk.common.enums.CompositionElemType;
 
 @Data
 @NoArgsConstructor

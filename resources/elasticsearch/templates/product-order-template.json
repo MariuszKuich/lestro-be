@@ -35,6 +35,22 @@
         "price": {
           "type": "double",
           "index": true
+        },
+        "plantName": {
+          "type": "keyword",
+          "index": false
+        },
+        "decorationName": {
+          "type": "keyword",
+          "index": false
+        },
+        "ornamentName": {
+          "type": "keyword",
+          "index": false
+        },
+        "potName": {
+          "type": "keyword",
+          "index": false
         }
       }
     }

@@ -3,7 +3,7 @@ package pl.mariuszk.paymentservice.model.frontend;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.mariuszk.elasticsearch.enums.PaymentCode;
+import pl.mariuszk.common.enums.PaymentCode;
 
 @Data
 @AllArgsConstructor
