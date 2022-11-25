@@ -11,12 +11,15 @@ import pl.mariuszk.frontendcommunicationservice.feign.client.DeliveryClient;
 import pl.mariuszk.frontendcommunicationservice.feign.client.OrderClient;
 import pl.mariuszk.frontendcommunicationservice.feign.client.PaymentClient;
 import pl.mariuszk.frontendcommunicationservice.feign.client.ProductClient;
+import pl.mariuszk.frontendcommunicationservice.model.frontend.RedirectDto;
 import pl.mariuszk.orderservice.model.frontend.order.OrderDto;
+import pl.mariuszk.paymentservice.model.frontend.NewPaymentDataDto;
 import pl.mariuszk.paymentservice.model.frontend.PaymentDto;
 import pl.mariuszk.productservice.model.frontend.CompositionElementDto;
 import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.ProductDto;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -72,5 +75,17 @@ public class FrontendCommunicationController {
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body("Internal server error");
         }
+    }
+
+    @GetMapping("/payment/save-and-redirect/{orderNumber}")
+    public ResponseEntity<RedirectDto> savePaymentAndRedirectToPaymentService(@PathVariable long orderNumber) {
+        BigDecimal orderValue = orderClient.getTotalOrderValue(orderNumber);
+        NewPaymentDataDto newPaymentData = NewPaymentDataDto.builder()
+                .orderValue(orderValue)
+                .orderNumber(orderNumber)
+                .build();
+        RedirectDto redirectDto =
+                new RedirectDto(paymentClient.sendNewPaymentToPaymentServiceAndObtainRedirectUrl(newPaymentData));
+        return ResponseEntity.ok(redirectDto);
     }
 }

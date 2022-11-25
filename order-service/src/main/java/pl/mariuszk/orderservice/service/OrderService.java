@@ -10,6 +10,7 @@ import pl.mariuszk.orderservice.elasticsearch.repository.ProductOrderRepository;
 import pl.mariuszk.orderservice.model.frontend.order.OrderDto;
 import pl.mariuszk.orderservice.model.frontend.order.OrderItemDto;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -51,5 +52,12 @@ public class OrderService {
                     return productOrderElastic;
                 })
                 .toList();
+    }
+
+    public BigDecimal getTotalOrderValue(long orderNumber) {
+        return productOrderRepository.findByOrderNumber(orderNumber)
+                .stream()
+                .map(productOrder -> BigDecimal.valueOf(productOrder.getQuantity()).multiply(BigDecimal.valueOf(productOrder.getPrice())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

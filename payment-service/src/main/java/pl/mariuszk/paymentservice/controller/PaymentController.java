@@ -1,9 +1,8 @@
 package pl.mariuszk.paymentservice.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pl.mariuszk.paymentservice.model.frontend.NewPaymentDataDto;
 import pl.mariuszk.paymentservice.model.frontend.PaymentDto;
 import pl.mariuszk.paymentservice.service.PaymentService;
 
@@ -19,5 +18,10 @@ public class PaymentController {
     @GetMapping("/all")
     public List<PaymentDto> getAvailablePaymentMethods() {
         return paymentService.getAvailablePaymentMethods();
+    }
+
+    @PostMapping("/new")
+    public String sendNewPaymentToPaymentServiceAndObtainRedirectUrl(@RequestBody NewPaymentDataDto newPaymentDataDto) {
+        return paymentService.sendNewPaymentToPaymentServiceAndObtainRedirectUrl(newPaymentDataDto);
     }
 }

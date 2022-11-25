@@ -2,3 +2,5 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+payment:
+  newPaymentUrl: http://localhost:8081/payment-mock/new
