@@ -3,14 +3,13 @@ package pl.mariuszk.frontendcommunicationservice.controller;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.mariuszk.customerservice.model.frontend.SignUpDto;
 import pl.mariuszk.deliveryservice.model.frontend.DeliveryDto;
 import pl.mariuszk.common.enums.CompositionElemType;
-import pl.mariuszk.frontendcommunicationservice.feign.client.DeliveryClient;
-import pl.mariuszk.frontendcommunicationservice.feign.client.OrderClient;
-import pl.mariuszk.frontendcommunicationservice.feign.client.PaymentClient;
-import pl.mariuszk.frontendcommunicationservice.feign.client.ProductClient;
+import pl.mariuszk.frontendcommunicationservice.feign.client.*;
 import pl.mariuszk.frontendcommunicationservice.model.frontend.RedirectDto;
 import pl.mariuszk.orderservice.model.frontend.order.OrderDto;
 import pl.mariuszk.paymentservice.model.frontend.NewPaymentDataDto;
@@ -32,6 +31,7 @@ public class FrontendCommunicationController {
     private final DeliveryClient deliveryClient;
     private final PaymentClient paymentClient;
     private final OrderClient orderClient;
+    private final CustomerClient customerClient;
 
     @GetMapping("/product/list")
     public ResponseEntity<Page<ProductDto>> getProductsList(@RequestParam Map<String, String> request) {
@@ -87,5 +87,19 @@ public class FrontendCommunicationController {
         RedirectDto redirectDto =
                 new RedirectDto(paymentClient.sendNewPaymentToPaymentServiceAndObtainRedirectUrl(newPaymentData));
         return ResponseEntity.ok(redirectDto);
+    }
+
+    @PostMapping("/customer/sign-up")
+    public ResponseEntity<Void> createNewAccount(@RequestBody SignUpDto signUpDto) {
+        try {
+            customerClient.createNewAccount(signUpDto);
+            return ResponseEntity.ok().build();
+        } catch (FeignException.BadRequest e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        } catch (FeignException.Conflict e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 }

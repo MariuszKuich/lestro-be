@@ -1,0 +1,10 @@
+CREATE DATABASE lestro;
+CREATE SCHEMA lestro;
+CREATE TABLE lestro.customers (
+    id serial PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    surname VARCHAR(30) NOT NULL,
+    mail VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(200) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

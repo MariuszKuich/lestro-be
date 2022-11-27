@@ -1,22 +1,24 @@
 package pl.mariuszk.customerservice.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.mariuszk.customerservice.model.frontend.SignUpDto;
+import pl.mariuszk.customerservice.service.CustomerService;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/customer")
 @RequiredArgsConstructor
 public class CustomerController {
 
-    private final ServletWebServerApplicationContext webServerAppCtxt;
+    private final CustomerService customerService;
 
-    @GetMapping("/status")
-    public ResponseEntity<String> getStatus() {
-        int serverPort = webServerAppCtxt.getWebServer().getPort();
-        return ResponseEntity.ok(String.format("CustomerService: RUNNING (port %s)", serverPort));
+    @PostMapping("/sign-up")
+    public void createNewAccount(@Valid @RequestBody SignUpDto signUpDto) {
+        customerService.createNewAccount(signUpDto);
     }
 }

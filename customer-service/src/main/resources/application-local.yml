@@ -2,3 +2,15 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: never
+      platform: postgres
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lestro?currentSchema=lestro
+    username: postgres
+    password: pwd4321
