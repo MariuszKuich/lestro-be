@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.Service;
+import pl.mariuszk.frontendcommunicationservice.model.frontend.TokenDto;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -24,7 +25,7 @@ public class TokenService {
 
     private final JwtEncoder jwtEncoder;
 
-    public String generateToken(Authentication authentication) {
+    public TokenDto generateToken(Authentication authentication) {
         Instant now = LocalDateTime.now().toInstant(ZoneOffset.UTC);
         String scope = getScope(authentication);
 
@@ -36,7 +37,8 @@ public class TokenService {
                 .claim(SCOPE, scope)
                 .build();
 
-        return this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+        String token = this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+        return new TokenDto(token);
     }
 
     private String getScope(Authentication authentication) {

@@ -12,6 +12,7 @@ import pl.mariuszk.deliveryservice.model.frontend.DeliveryDto;
 import pl.mariuszk.common.enums.CompositionElemType;
 import pl.mariuszk.frontendcommunicationservice.feign.client.*;
 import pl.mariuszk.frontendcommunicationservice.model.frontend.RedirectDto;
+import pl.mariuszk.frontendcommunicationservice.model.frontend.TokenDto;
 import pl.mariuszk.frontendcommunicationservice.service.security.TokenService;
 import pl.mariuszk.orderservice.model.frontend.order.OrderDto;
 import pl.mariuszk.paymentservice.model.frontend.NewPaymentDataDto;
@@ -108,7 +109,7 @@ public class FrontendCommunicationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> authenticateAndReturnJwtToken(Authentication authentication) {
+    public ResponseEntity<TokenDto> authenticateAndReturnJwtToken(Authentication authentication) {
         return ResponseEntity.ok(tokenService.generateToken(authentication));
     }
 }
