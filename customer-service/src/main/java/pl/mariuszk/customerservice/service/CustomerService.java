@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.stereotype.Service;
+import pl.mariuszk.common.entities.CustomerEntity;
 import pl.mariuszk.common.exceptions.CustomerAlreadyExistsException;
-import pl.mariuszk.customerservice.model.entity.CustomerEntity;
 import pl.mariuszk.customerservice.model.frontend.SignUpDto;
 import pl.mariuszk.customerservice.repository.CustomerRepository;
 

@@ -1,9 +1,10 @@
-package pl.mariuszk.customerservice.model.entity;
+package pl.mariuszk.common.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.mariuszk.common.enums.Authority;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -30,6 +31,10 @@ public class CustomerEntity {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "authority", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Authority authority;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

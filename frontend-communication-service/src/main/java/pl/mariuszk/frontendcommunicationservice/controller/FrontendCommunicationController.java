@@ -5,12 +5,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import pl.mariuszk.customerservice.model.frontend.SignUpDto;
 import pl.mariuszk.deliveryservice.model.frontend.DeliveryDto;
 import pl.mariuszk.common.enums.CompositionElemType;
 import pl.mariuszk.frontendcommunicationservice.feign.client.*;
 import pl.mariuszk.frontendcommunicationservice.model.frontend.RedirectDto;
+import pl.mariuszk.frontendcommunicationservice.service.security.TokenService;
 import pl.mariuszk.orderservice.model.frontend.order.OrderDto;
 import pl.mariuszk.paymentservice.model.frontend.NewPaymentDataDto;
 import pl.mariuszk.paymentservice.model.frontend.PaymentDto;
@@ -19,6 +21,7 @@ import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.ProductDto;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +35,7 @@ public class FrontendCommunicationController {
     private final PaymentClient paymentClient;
     private final OrderClient orderClient;
     private final CustomerClient customerClient;
+    private final TokenService tokenService;
 
     @GetMapping("/product/list")
     public ResponseEntity<Page<ProductDto>> getProductsList(@RequestParam Map<String, String> request) {
@@ -101,5 +105,10 @@ public class FrontendCommunicationController {
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> authenticateAndReturnJwtToken(Authentication authentication) {
+        return ResponseEntity.ok(tokenService.generateToken(authentication));
     }
 }

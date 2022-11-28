@@ -6,5 +6,6 @@ CREATE TABLE lestro.customers (
     surname VARCHAR(30) NOT NULL,
     mail VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(200) NOT NULL,
+    authority VARCHAR(50) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

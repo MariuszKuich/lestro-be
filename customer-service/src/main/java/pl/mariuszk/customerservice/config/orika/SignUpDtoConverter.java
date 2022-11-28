@@ -5,7 +5,8 @@ import ma.glasnost.orika.CustomConverter;
 import ma.glasnost.orika.MappingContext;
 import ma.glasnost.orika.metadata.Type;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import pl.mariuszk.customerservice.model.entity.CustomerEntity;
+import pl.mariuszk.common.entities.CustomerEntity;
+import pl.mariuszk.common.enums.Authority;
 import pl.mariuszk.customerservice.model.frontend.SignUpDto;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ public class SignUpDtoConverter extends CustomConverter<SignUpDto, CustomerEntit
                 .surname(signUpDto.getSurname())
                 .mail(signUpDto.getMail())
                 .password(passwordEncoder.encode(signUpDto.getPassword()))
+                .authority(Authority.CUSTOMER)
                 .createdAt(LocalDateTime.now())
                 .build();
     }
