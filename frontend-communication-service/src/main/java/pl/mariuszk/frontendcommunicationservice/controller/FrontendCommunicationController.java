@@ -21,13 +21,13 @@ import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.ProductDto;
 
 import java.math.BigDecimal;
-import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/lestro-be")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class FrontendCommunicationController {
 
     private final ProductClient productClient;
