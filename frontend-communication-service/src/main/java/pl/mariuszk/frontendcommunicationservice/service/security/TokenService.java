@@ -1,6 +1,7 @@
 package pl.mariuszk.frontendcommunicationservice.service.security;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.*;
@@ -23,9 +24,11 @@ import static pl.mariuszk.common.enums.Claim.SCOPE;
 public class TokenService {
 
     private static final String ISSUER = "self";
+    private static final String BEARER_PREFIX = "Bearer ";
     private static final int TIME_AMOUNT_FOR_EXPIRATION = 1;
 
     private final JwtEncoder jwtEncoder;
+    private final JwtDecoder jwtDecoder;
 
     public TokenDto generateToken(Authentication authentication) {
         Instant now = LocalDateTime.now().toInstant(ZoneOffset.UTC);
@@ -48,5 +51,14 @@ public class TokenService {
         return authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(SPACE));
+    }
+
+    public String retrieveEmailAddress(String token) {
+        Jwt jwt = jwtDecoder.decode(deleteBearerPrefix(token));
+        return ((String) jwt.getClaims().get(MAIL.getValue()));
+    }
+
+    private String deleteBearerPrefix(String token) {
+        return token.replace(BEARER_PREFIX, StringUtils.EMPTY);
     }
 }

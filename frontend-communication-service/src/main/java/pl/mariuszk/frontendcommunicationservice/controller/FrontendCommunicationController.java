@@ -7,9 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import pl.mariuszk.common.enums.CompositionElemType;
+import pl.mariuszk.customerservice.model.frontend.AddressDto;
+import pl.mariuszk.customerservice.model.frontend.SavedAddressDto;
 import pl.mariuszk.customerservice.model.frontend.SignUpDto;
 import pl.mariuszk.deliveryservice.model.frontend.DeliveryDto;
-import pl.mariuszk.common.enums.CompositionElemType;
 import pl.mariuszk.frontendcommunicationservice.feign.client.*;
 import pl.mariuszk.frontendcommunicationservice.model.frontend.RedirectDto;
 import pl.mariuszk.frontendcommunicationservice.model.frontend.TokenDto;
@@ -106,6 +108,19 @@ public class FrontendCommunicationController {
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
+    }
+
+    @PostMapping("/c/secure/customer/save-address")
+    public ResponseEntity<Void> saveAddressData(@RequestBody AddressDto addressDto,
+                                                @RequestHeader (name="Authorization") String token) {
+        addressDto.setMail(tokenService.retrieveEmailAddress(token));
+        customerClient.saveAddressData(addressDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/c/secure/customer/get-address")
+    public ResponseEntity<SavedAddressDto> getAddressDataForCustomer(@RequestHeader (name="Authorization") String token) {
+        return ResponseEntity.ok(customerClient.getAddressData(tokenService.retrieveEmailAddress(token)));
     }
 
     @PostMapping("/login")

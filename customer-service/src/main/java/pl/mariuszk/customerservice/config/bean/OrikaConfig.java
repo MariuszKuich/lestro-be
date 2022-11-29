@@ -8,6 +8,7 @@ import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import pl.mariuszk.customerservice.config.orika.AddressDataEntityConverter;
 import pl.mariuszk.customerservice.config.orika.SignUpDtoConverter;
 
 @Configuration
@@ -21,6 +22,7 @@ public class OrikaConfig {
         MapperFactory mapperFactory =  new DefaultMapperFactory.Builder().useAutoMapping(true).build();
         ConverterFactory converterFactory = mapperFactory.getConverterFactory();
         converterFactory.registerConverter(new SignUpDtoConverter(passwordEncoder));
+        converterFactory.registerConverter(new AddressDataEntityConverter());
         return mapperFactory.getMapperFacade();
     }
 }
