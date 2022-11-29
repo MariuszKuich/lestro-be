@@ -47,4 +47,8 @@ public class CustomerUserPrincipal implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public String getMail() {
+        return customerEntity.getMail();
+    }
 }

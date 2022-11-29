@@ -21,6 +21,7 @@ public class OrderDtoConverter extends CustomConverter<OrderDto, OrderElastic> {
                 .paymentMethod(orderDto.getPaymentMethod())
                 .name(orderDto.getClientData().getName())
                 .surname(orderDto.getClientData().getSurname())
+                .mail(orderDto.getClientData().getMail())
                 .street(orderDto.getClientData().getStreet())
                 .houseNo(orderDto.getClientData().getHouseNo())
                 .apartmentNo(orderDto.getClientData().getApartNo())
