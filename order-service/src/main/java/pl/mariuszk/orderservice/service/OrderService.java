@@ -2,16 +2,19 @@ package pl.mariuszk.orderservice.service;
 
 import lombok.RequiredArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.mariuszk.elasticsearch.model.OrderElastic;
 import pl.mariuszk.elasticsearch.model.ProductOrderElastic;
 import pl.mariuszk.orderservice.elasticsearch.repository.OrderRepository;
-import pl.mariuszk.orderservice.elasticsearch.repository.ProductOrderRepository;
-import pl.mariuszk.orderservice.model.frontend.order.OrderDto;
-import pl.mariuszk.orderservice.model.frontend.order.OrderItemDto;
+import pl.mariuszk.orderservice.model.frontend.order.NewOrderDto;
+import pl.mariuszk.orderservice.model.frontend.order.NewOrderItemDto;
+import pl.mariuszk.orderservice.model.frontend.order.history.OrderDto;
 
-import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static pl.mariuszk.elasticsearch.enums.ElasticsearchField.CREATED_TIMESTAMP;
 
 @Service
 @RequiredArgsConstructor
@@ -21,13 +24,13 @@ public class OrderService {
 
     private final MapperFacade mapperFacade;
     private final OrderRepository orderRepository;
-    private final ProductOrderRepository productOrderRepository;
+    private final OrderItemsService orderItemsService;
 
-    public synchronized long createNewOrder(OrderDto orderDto) {
+    public synchronized long createNewOrder(NewOrderDto orderDto) {
         long newOrderNumber = generateNewOrderNumber();
 
         orderRepository.save(getNewOrderObject(orderDto, newOrderNumber));
-        productOrderRepository.saveAll(getOrderProductsList(orderDto.getOrderItems(), newOrderNumber));
+        orderItemsService.saveOrderItems(getProductsListForOrder(orderDto.getOrderItems(), newOrderNumber));
 
         return newOrderNumber;
     }
@@ -38,13 +41,13 @@ public class OrderService {
                 .orElse(ORDER_NUMBERING_START);
     }
 
-    private OrderElastic getNewOrderObject(OrderDto orderDto, long newOrderNumber) {
+    private OrderElastic getNewOrderObject(NewOrderDto orderDto, long newOrderNumber) {
         OrderElastic newOrderObject = mapperFacade.map(orderDto, OrderElastic.class);
         newOrderObject.setOrderNumber(newOrderNumber);
         return newOrderObject;
     }
 
-    private List<ProductOrderElastic> getOrderProductsList(List<OrderItemDto> orderItems, long newOrderNumber) {
+    private List<ProductOrderElastic> getProductsListForOrder(List<NewOrderItemDto> orderItems, long newOrderNumber) {
         return orderItems.stream()
                 .map(orderItem -> {
                     ProductOrderElastic productOrderElastic = mapperFacade.map(orderItem, ProductOrderElastic.class);
@@ -54,10 +57,9 @@ public class OrderService {
                 .toList();
     }
 
-    public BigDecimal getTotalOrderValue(long orderNumber) {
-        return productOrderRepository.findByOrderNumber(orderNumber)
-                .stream()
-                .map(productOrder -> BigDecimal.valueOf(productOrder.getQuantity()).multiply(BigDecimal.valueOf(productOrder.getPrice())))
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    public List<OrderDto> getOrderHistory(String customerMail) {
+        return orderRepository.findByMail(customerMail, Sort.by(CREATED_TIMESTAMP.getName()).descending()).stream()
+                .map(order -> mapperFacade.map(order, OrderDto.class))
+                .collect(Collectors.toList());
     }
 }

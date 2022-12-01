@@ -16,7 +16,8 @@ import pl.mariuszk.frontendcommunicationservice.feign.client.*;
 import pl.mariuszk.frontendcommunicationservice.model.frontend.RedirectDto;
 import pl.mariuszk.frontendcommunicationservice.model.frontend.TokenDto;
 import pl.mariuszk.frontendcommunicationservice.service.security.TokenService;
-import pl.mariuszk.orderservice.model.frontend.order.OrderDto;
+import pl.mariuszk.orderservice.model.frontend.order.NewOrderDto;
+import pl.mariuszk.orderservice.model.frontend.order.history.OrderDto;
 import pl.mariuszk.paymentservice.model.frontend.NewPaymentDataDto;
 import pl.mariuszk.paymentservice.model.frontend.PaymentDto;
 import pl.mariuszk.productservice.model.frontend.CompositionElementDto;
@@ -73,7 +74,7 @@ public class FrontendCommunicationController {
     }
 
     @PostMapping("/order/new")
-    public ResponseEntity<String> createNewOrder(@RequestBody OrderDto orderDto) {
+    public ResponseEntity<String> createNewOrder(@RequestBody NewOrderDto orderDto) {
         try {
             long orderNumber = orderClient.createNewOrder(orderDto);
             return ResponseEntity.ok(Long.toString(orderNumber));
@@ -110,7 +111,7 @@ public class FrontendCommunicationController {
         }
     }
 
-    @PostMapping("/c/secure/customer/save-address")
+    @PostMapping("/c/secure/save-address")
     public ResponseEntity<Void> saveAddressData(@RequestBody AddressDto addressDto,
                                                 @RequestHeader (name="Authorization") String token) {
         addressDto.setMail(tokenService.retrieveEmailAddress(token));
@@ -118,7 +119,7 @@ public class FrontendCommunicationController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/c/secure/customer/get-address")
+    @GetMapping("/c/secure/get-address")
     public ResponseEntity<SavedAddressDto> getAddressDataForCustomer(@RequestHeader (name="Authorization") String token) {
         return ResponseEntity.ok(customerClient.getAddressData(tokenService.retrieveEmailAddress(token)));
     }
@@ -126,5 +127,10 @@ public class FrontendCommunicationController {
     @PostMapping("/login")
     public ResponseEntity<TokenDto> authenticateAndReturnJwtToken(Authentication authentication) {
         return ResponseEntity.ok(tokenService.generateToken(authentication));
+    }
+
+    @GetMapping("/c/secure/order-history")
+    public ResponseEntity<List<OrderDto>> getOrderHistory(@RequestHeader (name="Authorization") String token) {
+        return ResponseEntity.ok(orderClient.getOrderHistory(tokenService.retrieveEmailAddress(token)));
     }
 }

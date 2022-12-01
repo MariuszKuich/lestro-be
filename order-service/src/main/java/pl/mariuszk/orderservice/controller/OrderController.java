@@ -2,11 +2,14 @@ package pl.mariuszk.orderservice.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import pl.mariuszk.orderservice.model.frontend.order.OrderDto;
+import pl.mariuszk.orderservice.model.frontend.order.NewOrderDto;
+import pl.mariuszk.orderservice.model.frontend.order.history.OrderDto;
+import pl.mariuszk.orderservice.service.OrderItemsService;
 import pl.mariuszk.orderservice.service.OrderService;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/order")
@@ -14,14 +17,20 @@ import java.math.BigDecimal;
 public class OrderController {
 
     private final OrderService orderService;
+    private final OrderItemsService orderItemsService;
 
     @PostMapping("/new")
-    public long createNewOrder(@Valid @RequestBody OrderDto orderDto) {
+    public long createNewOrder(@Valid @RequestBody NewOrderDto orderDto) {
         return orderService.createNewOrder(orderDto);
     }
 
     @GetMapping("/total-value/{orderNumber}")
     public BigDecimal getTotalOrderValue(@PathVariable long orderNumber) {
-        return orderService.getTotalOrderValue(orderNumber);
+        return orderItemsService.getTotalOrderItemsValue(orderNumber);
+    }
+
+    @GetMapping("/order-history")
+    public List<OrderDto> getOrderHistory(@RequestParam String customerMail) {
+        return orderService.getOrderHistory(customerMail);
     }
 }

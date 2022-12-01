@@ -6,11 +6,11 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum OrderStatus {
-    NEW("NOWE"),
-    PAID("OPŁACONE"),
-    IN_PROGRESS("W TRAKCIE REALIZACJI"),
-    SENT("WYSŁANE"),
-    RECEIVED("ODEBRANE");
+    NEW("Nowe"),
+    PAID("Opłacone"),
+    IN_PROGRESS("W trakcie tralizacji"),
+    SENT("Wysłane"),
+    RECEIVED("Odebrane");
 
     private final String name;
 }

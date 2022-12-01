@@ -14,7 +14,8 @@ public enum ElasticsearchField {
     WIDTH("width"),
     LENGTH("length"),
     IMGS("imgs"),
-    TYPE("type");
+    TYPE("type"),
+    CREATED_TIMESTAMP("created-timestamp");
 
     private final String name;
 }

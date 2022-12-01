@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderItemDto {
+public class NewOrderItemDto {
 
     @NotBlank
     private String productCode;

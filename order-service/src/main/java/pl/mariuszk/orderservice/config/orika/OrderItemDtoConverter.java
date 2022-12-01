@@ -15,7 +15,7 @@ import pl.mariuszk.common.exceptions.ProductNotFoundException;
 import pl.mariuszk.elasticsearch.model.ConfiguratorElementElastic;
 import pl.mariuszk.elasticsearch.model.ProductOrderElastic;
 import pl.mariuszk.orderservice.model.ProductPriceDto;
-import pl.mariuszk.orderservice.model.frontend.order.OrderItemDto;
+import pl.mariuszk.orderservice.model.frontend.order.NewOrderItemDto;
 
 import java.util.Optional;
 
@@ -27,19 +27,19 @@ import static pl.mariuszk.elasticsearch.enums.ElasticsearchIndex.CONFIGURATOR_IN
 import static pl.mariuszk.elasticsearch.enums.ElasticsearchIndex.PRODUCT_INDEX;
 
 @RequiredArgsConstructor
-public class OrderItemDtoConverter extends CustomConverter<OrderItemDto, ProductOrderElastic> {
+public class OrderItemDtoConverter extends CustomConverter<NewOrderItemDto, ProductOrderElastic> {
 
     private final ElasticsearchRestTemplate elasticsearchRestTemplate;
 
     @Override
-    public ProductOrderElastic convert(OrderItemDto orderItemDto, Type<? extends ProductOrderElastic> type, MappingContext mappingContext) {
+    public ProductOrderElastic convert(NewOrderItemDto orderItemDto, Type<? extends ProductOrderElastic> type, MappingContext mappingContext) {
         if (orderItemDto.getProductCode().startsWith(CUSTOM_PRODUCT_CODE_PREFIX)) {
             return buildProductElasticForCustomItem(orderItemDto);
         }
         return buildProductElasticForStandardItem(orderItemDto);
     }
 
-    private ProductOrderElastic buildProductElasticForStandardItem(OrderItemDto orderItemDto) {
+    private ProductOrderElastic buildProductElasticForStandardItem(NewOrderItemDto orderItemDto) {
         return ProductOrderElastic.builder()
                 .quantity(orderItemDto.getQuantity())
                 .code(orderItemDto.getProductCode())
@@ -62,7 +62,7 @@ public class OrderItemDtoConverter extends CustomConverter<OrderItemDto, Product
                 .orElseThrow(ProductNotFoundException::new);
     }
 
-    private ProductOrderElastic buildProductElasticForCustomItem(OrderItemDto orderItemDto) {
+    private ProductOrderElastic buildProductElasticForCustomItem(NewOrderItemDto orderItemDto) {
         ConfiguratorElementElastic plantData = getConfiguratorElementByCodeAndType(orderItemDto.getPlantCode(), PLANT);
         ConfiguratorElementElastic decorationData = getConfiguratorElementByCodeAndType(orderItemDto.getDecorationCode(), DECORATION);
         ConfiguratorElementElastic ornamentData = getConfiguratorElementByCodeAndType(orderItemDto.getOrnamentCode(), ORNAMENT);

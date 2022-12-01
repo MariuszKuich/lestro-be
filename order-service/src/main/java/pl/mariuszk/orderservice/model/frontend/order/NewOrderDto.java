@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDto {
+public class NewOrderDto {
 
     @NotNull
     @Valid
@@ -28,5 +28,5 @@ public class OrderDto {
 
     @NotEmpty
     @Valid
-    private List<OrderItemDto> orderItems;
+    private List<NewOrderItemDto> orderItems;
 }

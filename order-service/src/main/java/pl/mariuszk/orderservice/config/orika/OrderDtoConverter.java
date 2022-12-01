@@ -5,14 +5,14 @@ import ma.glasnost.orika.MappingContext;
 import ma.glasnost.orika.metadata.Type;
 import pl.mariuszk.common.enums.OrderStatus;
 import pl.mariuszk.elasticsearch.model.OrderElastic;
-import pl.mariuszk.orderservice.model.frontend.order.OrderDto;
+import pl.mariuszk.orderservice.model.frontend.order.NewOrderDto;
 
 import java.time.LocalDateTime;
 
-public class OrderDtoConverter extends CustomConverter<OrderDto, OrderElastic> {
+public class OrderDtoConverter extends CustomConverter<NewOrderDto, OrderElastic> {
 
     @Override
-    public OrderElastic convert(OrderDto orderDto, Type<? extends OrderElastic> type, MappingContext mappingContext) {
+    public OrderElastic convert(NewOrderDto orderDto, Type<? extends OrderElastic> type, MappingContext mappingContext) {
         return OrderElastic.builder()
                 .createdTimestamp(LocalDateTime.now())
                 .status(OrderStatus.NEW)
