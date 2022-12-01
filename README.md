@@ -9,4 +9,4 @@ Components required to run the application locally:
 - PostgreSQL database running on localhost:5432
 - add private and public .pem rsa keys (useful link: https://www.danvega.dev/blog/2022/09/06/spring-security-jwt/)
 
-For development purposes disable CORS in your browser (Google Chrome example: run './chrome.exe --disable-site-isolation-trials --disable-web-security --user-data-dir="C:\temp"' in CMD)
+frontend-communication microservice allows CORS, but if it causes any troubles, you can disable it in your browser (Google Chrome example: run './chrome.exe --disable-site-isolation-trials --disable-web-security --user-data-dir="C:\temp"' in CMD)
