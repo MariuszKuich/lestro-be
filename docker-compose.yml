@@ -71,13 +71,13 @@ services:
       - 8761:8761
     networks:
       - spring-cloud-network
-  user-service:
-    container_name: user-service
+  employee-panel-service:
+    container_name: employee-panel-service
     build:
-      context: user-service
+      context: employee-panel-service
       dockerfile: Dockerfile
-    image: user-service:latest
-    hostname: user-service
+    image: employee-panel-service:latest
+    hostname: employee-panel-service
     ports:
       - 50006:50006
     networks:

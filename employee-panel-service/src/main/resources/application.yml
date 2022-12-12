@@ -2,4 +2,4 @@ server:
   port: 50006
 spring:
   application:
-    name: user-service
+    name: employee-panel-service

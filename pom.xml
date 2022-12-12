@@ -22,7 +22,7 @@
         <module>pricing-service</module>
         <module>product-service</module>
         <module>registry-service</module>
-        <module>user-service</module>
+        <module>employee-panel-service</module>
         <module>order-service</module>
     </modules>
 

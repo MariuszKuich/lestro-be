@@ -7,10 +7,10 @@
         <artifactId>lestro-be</artifactId>
         <version>1.0</version>
     </parent>
-    <artifactId>user-service</artifactId>
+    <artifactId>employee-panel-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>user-service</name>
-    <description>user-service</description>
+    <name>employee-panel-service</name>
+    <description>employee-panel-service</description>
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2021.0.4</spring-cloud.version>
