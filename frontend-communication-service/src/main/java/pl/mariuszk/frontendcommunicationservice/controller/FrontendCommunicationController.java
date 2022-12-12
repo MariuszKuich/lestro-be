@@ -111,7 +111,7 @@ public class FrontendCommunicationController {
         }
     }
 
-    @PostMapping("/c/secure/save-address")
+    @PostMapping("/secure/save-address")
     public ResponseEntity<Void> saveAddressData(@RequestBody AddressDto addressDto,
                                                 @RequestHeader (name="Authorization") String token) {
         addressDto.setMail(tokenService.retrieveEmailAddress(token));
@@ -119,7 +119,7 @@ public class FrontendCommunicationController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/c/secure/get-address")
+    @GetMapping("/secure/get-address")
     public ResponseEntity<SavedAddressDto> getAddressDataForCustomer(@RequestHeader (name="Authorization") String token) {
         return ResponseEntity.ok(customerClient.getAddressData(tokenService.retrieveEmailAddress(token)));
     }
@@ -129,7 +129,7 @@ public class FrontendCommunicationController {
         return ResponseEntity.ok(tokenService.generateToken(authentication));
     }
 
-    @GetMapping("/c/secure/order-history")
+    @GetMapping("/secure/order-history")
     public ResponseEntity<List<OrderDto>> getOrderHistory(@RequestHeader (name="Authorization") String token) {
         return ResponseEntity.ok(orderClient.getOrderHistory(tokenService.retrieveEmailAddress(token)));
     }

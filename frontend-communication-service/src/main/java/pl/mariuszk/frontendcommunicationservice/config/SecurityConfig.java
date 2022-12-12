@@ -32,7 +32,7 @@ import static pl.mariuszk.common.enums.Authority.CUSTOMER;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private static final String CUSTOMER_ENDPOINTS_REQUIRING_AUTHENTICATION = "/lestro-be/c/secure/**";
+    private static final String CUSTOMER_ENDPOINTS_REQUIRING_AUTHENTICATION = "/lestro-be/secure/**";
 
     private final RsaKeyProperties rsaKeys;
     private final CustomerUserDetailsService customerUserDetailsService;
