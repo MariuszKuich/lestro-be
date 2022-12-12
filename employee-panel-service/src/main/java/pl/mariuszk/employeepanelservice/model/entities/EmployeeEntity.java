@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.mariuszk.common.enums.Authority;
 
 import javax.persistence.*;
 
@@ -23,4 +24,8 @@ public class EmployeeEntity {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "authority", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Authority authority;
 }

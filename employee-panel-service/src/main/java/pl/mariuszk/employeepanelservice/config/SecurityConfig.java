@@ -25,6 +25,8 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import pl.mariuszk.employeepanelservice.service.security.EmployeeUserDetailsService;
 
+import static pl.mariuszk.common.enums.Authority.EMPLOYEE;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -46,7 +48,7 @@ public class SecurityConfig {
                         .antMatchers(LOGIN_ENDPOINT)
                         .permitAll()
                         .antMatchers(ENDPOINTS_REQUIRING_AUTHENTICATION)
-                        .authenticated()
+                        .hasAuthority(EMPLOYEE.getScope())
                 )
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

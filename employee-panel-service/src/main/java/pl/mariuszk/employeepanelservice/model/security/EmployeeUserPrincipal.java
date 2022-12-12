@@ -1,12 +1,12 @@
 package pl.mariuszk.employeepanelservice.model.security;
 
+import com.google.common.collect.ImmutableList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import pl.mariuszk.employeepanelservice.model.entities.EmployeeEntity;
 
 import java.util.Collection;
-import java.util.Collections;
 
 @RequiredArgsConstructor
 public class EmployeeUserPrincipal implements UserDetails {
@@ -15,7 +15,7 @@ public class EmployeeUserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList();
+        return ImmutableList.of(() -> employeeEntity.getAuthority().name());
     }
 
     @Override

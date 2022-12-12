@@ -23,14 +23,15 @@ CREATE TABLE lestro.address_data (
 CREATE TABLE lestro.employees (
     id serial PRIMARY KEY,
     mail VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(200) NOT NULL
+    password VARCHAR(200) NOT NULL,
+    authority VARCHAR(50) NOT NULL
 );
 --pwd: zaq12wsx
-INSERT INTO lestro.employees (id, mail, password)
-    VALUES (1, 'jan.kowalski@lestro.pl', '$2a$10$5eyQNa99eiAXREIGlNWw6eqfDCncquVPLigsPrYabuBe3/43idCRC');
+INSERT INTO lestro.employees (id, mail, password, authority)
+    VALUES (1, 'jan.kowalski@lestro.pl', '$2a$10$5eyQNa99eiAXREIGlNWw6eqfDCncquVPLigsPrYabuBe3/43idCRC', 'EMPLOYEE');
 --pwd: zaq13edc
-INSERT INTO lestro.employees (id, mail, password)
-    VALUES (2, 'joanna.nowak@lestro.pl', '$2a$10$df9cAfyYyjZNRCn/VxLoveUTK06tEi9YFN8fKZswfeczeHkBsd34O');
+INSERT INTO lestro.employees (id, mail, password, authority)
+    VALUES (2, 'joanna.nowak@lestro.pl', '$2a$10$df9cAfyYyjZNRCn/VxLoveUTK06tEi9YFN8fKZswfeczeHkBsd34O', 'EMPLOYEE');
 --pwd: zaq14rfv
-INSERT INTO lestro.employees (id, mail, password)
-    VALUES (3, 'krzysztof.kowalczyk@lestro.pl', '$2a$10$84Tdbs/0C57UR/KxBJjA/u20yrEzmXaSx3OA6LpDi8QHTbWJkCZPO');
+INSERT INTO lestro.employees (id, mail, password, authority)
+    VALUES (3, 'krzysztof.kowalczyk@lestro.pl', '$2a$10$84Tdbs/0C57UR/KxBJjA/u20yrEzmXaSx3OA6LpDi8QHTbWJkCZPO', 'EMPLOYEE');
