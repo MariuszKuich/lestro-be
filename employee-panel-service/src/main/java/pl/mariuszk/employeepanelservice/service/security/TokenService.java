@@ -33,6 +33,6 @@ public class TokenService {
                 .build();
 
         String token = this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
-        return new TokenDto(token);
+        return new TokenDto(token, authentication.getName());
     }
 }

@@ -31,7 +31,7 @@ import pl.mariuszk.employeepanelservice.service.security.EmployeeUserDetailsServ
 public class SecurityConfig {
 
     private static final String LOGIN_ENDPOINT = "/lestro-panel/login";
-    private static final String ENDPOINTS_REQUIRING_AUTHENTICATION = "/lestro-panel/s/**";
+    private static final String ENDPOINTS_REQUIRING_AUTHENTICATION = "/lestro-panel/secure/**";
 
     private final RsaKeyProperties rsaKeys;
     private final EmployeeUserDetailsService employeeUserDetailsService;
