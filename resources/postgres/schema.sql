@@ -20,3 +20,17 @@ CREATE TABLE lestro.address_data (
     zip_code VARCHAR(6),
     city VARCHAR(30)
 );
+CREATE TABLE lestro.employees (
+    id serial PRIMARY KEY,
+    mail VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(200) NOT NULL
+);
+--pwd: zaq12wsx
+INSERT INTO lestro.employees (id, mail, password)
+    VALUES (1, 'jan.kowalski@lestro.pl', '$2a$10$5eyQNa99eiAXREIGlNWw6eqfDCncquVPLigsPrYabuBe3/43idCRC');
+--pwd: zaq13edc
+INSERT INTO lestro.employees (id, mail, password)
+    VALUES (2, 'joanna.nowak@lestro.pl', '$2a$10$df9cAfyYyjZNRCn/VxLoveUTK06tEi9YFN8fKZswfeczeHkBsd34O');
+--pwd: zaq14rfv
+INSERT INTO lestro.employees (id, mail, password)
+    VALUES (3, 'krzysztof.kowalczyk@lestro.pl', '$2a$10$84Tdbs/0C57UR/KxBJjA/u20yrEzmXaSx3OA6LpDi8QHTbWJkCZPO');
