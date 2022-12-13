@@ -3,12 +3,14 @@ package pl.mariuszk.orderservice.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.mariuszk.orderservice.model.frontend.order.NewOrderDto;
+import pl.mariuszk.orderservice.model.frontend.order.OrderPanelDto;
 import pl.mariuszk.orderservice.model.frontend.order.history.OrderDto;
 import pl.mariuszk.orderservice.service.OrderItemsService;
 import pl.mariuszk.orderservice.service.OrderService;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -32,5 +34,14 @@ public class OrderController {
     @GetMapping("/order-history")
     public List<OrderDto> getOrderHistory(@RequestParam String customerMail) {
         return orderService.getOrderHistory(customerMail);
+    }
+
+    @GetMapping("/employee-panel-list")
+    public List<OrderPanelDto> getOrdersForEmployeePanel() {
+        return Arrays.asList(
+          OrderPanelDto.builder().orderNo(3).build(),
+          OrderPanelDto.builder().orderNo(2).build(),
+          OrderPanelDto.builder().orderNo(1).build()
+        );
     }
 }

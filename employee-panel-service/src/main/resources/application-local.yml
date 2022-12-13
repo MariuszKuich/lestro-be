@@ -17,3 +17,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/lestro?currentSchema=lestro
     username: postgres
     password: pwd4321
+feign:
+  autoconfiguration:
+    jackson:
+      enabled: true
