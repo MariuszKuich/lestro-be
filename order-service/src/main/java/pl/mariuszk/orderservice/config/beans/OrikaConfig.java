@@ -11,6 +11,8 @@ import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import pl.mariuszk.orderservice.config.orika.OrderDtoConverter;
 import pl.mariuszk.orderservice.config.orika.OrderElasticConverter;
 import pl.mariuszk.orderservice.config.orika.OrderItemDtoConverter;
+import pl.mariuszk.orderservice.config.orika.OrderPanelConverter;
+import pl.mariuszk.orderservice.service.ConverterService;
 import pl.mariuszk.orderservice.service.OrderItemsService;
 
 @Configuration
@@ -19,6 +21,7 @@ public class OrikaConfig {
 
     private final ElasticsearchRestTemplate elasticsearchRestTemplate;
     private final OrderItemsService orderItemsService;
+    private final ConverterService converterService;
 
     @Bean
     public MapperFacade getMapperFacadeBean() {
@@ -26,7 +29,8 @@ public class OrikaConfig {
         ConverterFactory converterFactory = mapperFactory.getConverterFactory();
         converterFactory.registerConverter(new OrderDtoConverter());
         converterFactory.registerConverter(new OrderItemDtoConverter(elasticsearchRestTemplate));
-        converterFactory.registerConverter(new OrderElasticConverter(orderItemsService));
+        converterFactory.registerConverter(new OrderElasticConverter(orderItemsService, converterService));
+        converterFactory.registerConverter(new OrderPanelConverter(orderItemsService, converterService));
         return mapperFactory.getMapperFacade();
     }
 }

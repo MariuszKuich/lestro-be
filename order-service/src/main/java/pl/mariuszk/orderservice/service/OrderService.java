@@ -9,6 +9,7 @@ import pl.mariuszk.elasticsearch.model.ProductOrderElastic;
 import pl.mariuszk.orderservice.elasticsearch.repository.OrderRepository;
 import pl.mariuszk.orderservice.model.frontend.order.NewOrderDto;
 import pl.mariuszk.orderservice.model.frontend.order.NewOrderItemDto;
+import pl.mariuszk.orderservice.model.frontend.order.OrderPanelDto;
 import pl.mariuszk.orderservice.model.frontend.order.history.OrderDto;
 
 import java.util.List;
@@ -60,6 +61,12 @@ public class OrderService {
     public List<OrderDto> getOrderHistory(String customerMail) {
         return orderRepository.findByMail(customerMail, Sort.by(CREATED_TIMESTAMP.getName()).descending()).stream()
                 .map(order -> mapperFacade.map(order, OrderDto.class))
+                .collect(Collectors.toList());
+    }
+
+    public List<OrderPanelDto> getOrdersForEmployeePanel() {
+        return orderRepository.findAll(Sort.by(CREATED_TIMESTAMP.getName()).descending()).stream()
+                .map(order -> mapperFacade.map(order, OrderPanelDto.class))
                 .collect(Collectors.toList());
     }
 }

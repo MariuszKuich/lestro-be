@@ -4,12 +4,12 @@ import lombok.RequiredArgsConstructor;
 import ma.glasnost.orika.CustomConverter;
 import ma.glasnost.orika.MappingContext;
 import ma.glasnost.orika.metadata.Type;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.Sort;
 import pl.mariuszk.elasticsearch.model.OrderElastic;
 import pl.mariuszk.elasticsearch.model.ProductOrderElastic;
 import pl.mariuszk.orderservice.model.frontend.order.history.OrderDto;
 import pl.mariuszk.orderservice.model.frontend.order.history.OrderItemDto;
+import pl.mariuszk.orderservice.service.ConverterService;
 import pl.mariuszk.orderservice.service.OrderItemsService;
 
 import java.math.BigDecimal;
@@ -22,6 +22,7 @@ import static pl.mariuszk.elasticsearch.enums.ElasticsearchField.NAME;
 public class OrderElasticConverter extends CustomConverter<OrderElastic, OrderDto> {
 
     private final OrderItemsService orderItemsService;
+    private final ConverterService converterService;
 
     @Override
     public OrderDto convert(OrderElastic orderElastic, Type<? extends OrderDto> type, MappingContext mappingContext) {
@@ -36,22 +37,9 @@ public class OrderElasticConverter extends CustomConverter<OrderElastic, OrderDt
                 .statusLabel(orderElastic.getStatus().getName())
                 .deliveryLabel(orderElastic.getDeliveryMethod().getName())
                 .paymentLabel(orderElastic.getPaymentMethod().getName())
-                .address(buildAddress(orderElastic))
+                .address(converterService.buildAddress(orderElastic))
                 .items(buildOrderItemsDtos(orderItems))
                 .build();
-    }
-
-    private String buildAddress(OrderElastic orderElastic) {
-        String street = orderElastic.getStreet();
-        String houseNo = orderElastic.getHouseNo();
-        String apartmentNo = orderElastic.getApartmentNo();
-        String zipCode = orderElastic.getZipCode();
-        String city = orderElastic.getCity();
-
-        if (StringUtils.isEmpty(apartmentNo)) {
-            return String.format("%s %s, %s %s", street, houseNo, zipCode, city);
-        }
-        return String.format("%s %s/%s, %s %s", street, houseNo, apartmentNo, zipCode, city);
     }
 
     private List<OrderItemDto> buildOrderItemsDtos(List<ProductOrderElastic> orderItems) {

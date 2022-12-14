@@ -10,7 +10,6 @@ import pl.mariuszk.orderservice.service.OrderService;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -38,10 +37,6 @@ public class OrderController {
 
     @GetMapping("/employee-panel-list")
     public List<OrderPanelDto> getOrdersForEmployeePanel() {
-        return Arrays.asList(
-          OrderPanelDto.builder().orderNo(3).build(),
-          OrderPanelDto.builder().orderNo(2).build(),
-          OrderPanelDto.builder().orderNo(1).build()
-        );
+        return orderService.getOrdersForEmployeePanel();
     }
 }

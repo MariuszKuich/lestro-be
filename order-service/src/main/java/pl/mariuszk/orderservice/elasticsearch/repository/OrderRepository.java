@@ -12,4 +12,6 @@ public interface OrderRepository extends ElasticsearchRepository<OrderElastic, S
     Optional<OrderElastic> findTopByOrderByOrderNumberDesc();
 
     List<OrderElastic> findByMail(String mail, Sort sort);
+
+    List<OrderElastic> findAll(Sort sort);
 }
