@@ -3,7 +3,7 @@ package pl.mariuszk.orderservice.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.mariuszk.orderservice.model.frontend.order.NewOrderDto;
-import pl.mariuszk.orderservice.model.frontend.order.OrderPanelDto;
+import pl.mariuszk.orderservice.model.frontend.order.employeepanel.OrderPanelDto;
 import pl.mariuszk.orderservice.model.frontend.order.history.OrderDto;
 import pl.mariuszk.orderservice.service.OrderItemsService;
 import pl.mariuszk.orderservice.service.OrderService;

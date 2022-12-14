@@ -2,7 +2,7 @@ package pl.mariuszk.employeepanelservice.feign.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import pl.mariuszk.orderservice.model.frontend.order.OrderPanelDto;
+import pl.mariuszk.orderservice.model.frontend.order.employeepanel.OrderPanelDto;
 
 import java.util.List;
 

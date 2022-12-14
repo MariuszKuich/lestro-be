@@ -37,7 +37,7 @@ public class ConverterService {
         }
 
         return Stream.of(OrderStatus.values())
-                .filter(orderStatus -> orderStatus.getSequenceNumber() >= orderElastic.getStatus().getSequenceNumber())
+                .filter(orderStatus -> orderStatus.getSequenceNumber() > orderElastic.getStatus().getSequenceNumber())
                 .collect(Collectors.toMap(
                         OrderStatus::name,
                         OrderStatus::getName,

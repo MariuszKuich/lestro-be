@@ -1,4 +1,4 @@
-package pl.mariuszk.orderservice.model.frontend.order;
+package pl.mariuszk.orderservice.model.frontend.order.employeepanel;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -16,7 +17,7 @@ import java.util.Map;
 public class OrderPanelDto {
 
     private long orderNo;
-    private LocalDateTime cratedDate;
+    private LocalDate createdDate;
     private BigDecimal value;
     private String statusLabel;
     private Map<String, String> availableStatuses;
@@ -26,4 +27,5 @@ public class OrderPanelDto {
     private String clientName;
     private String mail;
     private String address;
+    private List<OrderPanelItemDto> items;
 }

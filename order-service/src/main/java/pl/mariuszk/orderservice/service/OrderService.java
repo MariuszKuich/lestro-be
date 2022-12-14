@@ -9,7 +9,7 @@ import pl.mariuszk.elasticsearch.model.ProductOrderElastic;
 import pl.mariuszk.orderservice.elasticsearch.repository.OrderRepository;
 import pl.mariuszk.orderservice.model.frontend.order.NewOrderDto;
 import pl.mariuszk.orderservice.model.frontend.order.NewOrderItemDto;
-import pl.mariuszk.orderservice.model.frontend.order.OrderPanelDto;
+import pl.mariuszk.orderservice.model.frontend.order.employeepanel.OrderPanelDto;
 import pl.mariuszk.orderservice.model.frontend.order.history.OrderDto;
 
 import java.util.List;

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.mariuszk.employeepanelservice.feign.client.OrderClient;
 import pl.mariuszk.employeepanelservice.model.frontend.TokenDto;
 import pl.mariuszk.employeepanelservice.service.security.TokenService;
-import pl.mariuszk.orderservice.model.frontend.order.OrderPanelDto;
+import pl.mariuszk.orderservice.model.frontend.order.employeepanel.OrderPanelDto;
 
 import java.util.List;
 
