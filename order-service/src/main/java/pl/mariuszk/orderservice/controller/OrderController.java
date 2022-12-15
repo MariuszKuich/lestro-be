@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.mariuszk.orderservice.model.frontend.order.NewOrderDto;
 import pl.mariuszk.orderservice.model.frontend.order.employeepanel.OrderPanelDto;
+import pl.mariuszk.orderservice.model.frontend.order.employeepanel.OrderStatusUpdateDto;
 import pl.mariuszk.orderservice.model.frontend.order.history.OrderDto;
 import pl.mariuszk.orderservice.service.OrderItemsService;
 import pl.mariuszk.orderservice.service.OrderService;
@@ -38,5 +39,15 @@ public class OrderController {
     @GetMapping("/employee-panel-list")
     public List<OrderPanelDto> getOrdersForEmployeePanel() {
         return orderService.getOrdersForEmployeePanel();
+    }
+
+    @PostMapping("/mark-as-paid")
+    void markOrderAsPaid(@RequestBody long orderNumber) {
+        orderService.markOrderAsPaid(orderNumber);
+    }
+
+    @PostMapping("/update-order-status")
+    void updateOrderStatus(@RequestBody OrderStatusUpdateDto orderStatusUpdateDto) {
+        orderService.updateOrderStatus(orderStatusUpdateDto);
     }
 }

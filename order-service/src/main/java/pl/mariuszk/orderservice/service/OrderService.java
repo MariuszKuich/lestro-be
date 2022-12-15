@@ -4,12 +4,15 @@ import lombok.RequiredArgsConstructor;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import pl.mariuszk.common.enums.OrderStatus;
+import pl.mariuszk.common.exceptions.OrderNotFoundException;
 import pl.mariuszk.elasticsearch.model.OrderElastic;
 import pl.mariuszk.elasticsearch.model.ProductOrderElastic;
 import pl.mariuszk.orderservice.elasticsearch.repository.OrderRepository;
 import pl.mariuszk.orderservice.model.frontend.order.NewOrderDto;
 import pl.mariuszk.orderservice.model.frontend.order.NewOrderItemDto;
 import pl.mariuszk.orderservice.model.frontend.order.employeepanel.OrderPanelDto;
+import pl.mariuszk.orderservice.model.frontend.order.employeepanel.OrderStatusUpdateDto;
 import pl.mariuszk.orderservice.model.frontend.order.history.OrderDto;
 
 import java.util.List;
@@ -68,5 +71,24 @@ public class OrderService {
         return orderRepository.findAll(Sort.by(CREATED_TIMESTAMP.getName()).descending()).stream()
                 .map(order -> mapperFacade.map(order, OrderPanelDto.class))
                 .collect(Collectors.toList());
+    }
+
+    public void markOrderAsPaid(long orderNumber) {
+        OrderElastic orderElastic = orderRepository.findByOrderNumber(orderNumber).orElseThrow(OrderNotFoundException::new);
+
+        orderElastic.setPaid(true);
+        orderElastic.setStatus(OrderStatus.PAID);
+
+        orderRepository.save(orderElastic);
+    }
+
+    public void updateOrderStatus(OrderStatusUpdateDto orderStatusUpdateDto) {
+        long orderNumber = orderStatusUpdateDto.getOrderNumber();
+        OrderStatus newStatus = OrderStatus.valueOf(orderStatusUpdateDto.getNewStatusCode());
+
+        OrderElastic orderElastic = orderRepository.findByOrderNumber(orderNumber).orElseThrow(OrderNotFoundException::new);
+        orderElastic.setStatus(newStatus);
+
+        orderRepository.save(orderElastic);
     }
 }
