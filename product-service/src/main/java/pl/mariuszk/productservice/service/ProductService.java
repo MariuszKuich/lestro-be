@@ -16,12 +16,14 @@ import org.springframework.data.elasticsearch.core.query.FetchSourceFilter;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import pl.mariuszk.common.enums.CompositionElemType;
+import pl.mariuszk.common.exceptions.ProductNotFoundException;
 import pl.mariuszk.elasticsearch.model.ProductElastic;
 import pl.mariuszk.productservice.elasticsearch.repository.ConfiguratorRepository;
 import pl.mariuszk.productservice.elasticsearch.repository.ProductRepository;
 import pl.mariuszk.productservice.model.frontend.CompositionElementDto;
 import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.ProductDto;
+import pl.mariuszk.productservice.model.frontend.UpdateProductDto;
 import pl.mariuszk.productservice.request.ProductRequest;
 
 import java.util.List;
@@ -132,5 +134,16 @@ public class ProductService {
         return productRepository.findAll(Sort.by(CODE.getName()).ascending()).stream()
                 .map(productDetails -> mapperFacade.map(productDetails, ProductDetailsDto.class))
                 .collect(Collectors.toList());
+    }
+
+    public void updateProduct(UpdateProductDto updateProductDto) {
+        ProductElastic productElastic = productRepository.findByCode(updateProductDto.getCode())
+                .orElseThrow(ProductNotFoundException::new);
+
+        productElastic.setDescription(updateProductDto.getDescription());
+        productElastic.setPrice(updateProductDto.getPrice().doubleValue());
+        productElastic.setImgLinks(updateProductDto.getImgLinks());
+
+        productRepository.save(productElastic);
     }
 }

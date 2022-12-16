@@ -7,9 +7,11 @@ import pl.mariuszk.common.enums.CompositionElemType;
 import pl.mariuszk.productservice.model.frontend.CompositionElementDto;
 import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.ProductDto;
+import pl.mariuszk.productservice.model.frontend.UpdateProductDto;
 import pl.mariuszk.productservice.request.ProductRequest;
 import pl.mariuszk.productservice.service.ProductService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -44,5 +46,10 @@ public class ProductController {
     @GetMapping("/employee-panel-list")
     public List<ProductDetailsDto> getProductsForEmployeePanel() {
         return productService.getProductsForEmployeePanel();
+    }
+
+    @PostMapping("/update-product")
+    public void updateProduct(@RequestBody @Valid UpdateProductDto updateProductDto) {
+        productService.updateProduct(updateProductDto);
     }
 }

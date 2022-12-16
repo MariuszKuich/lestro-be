@@ -11,7 +11,9 @@ import pl.mariuszk.employeepanelservice.model.frontend.TokenDto;
 import pl.mariuszk.employeepanelservice.service.security.TokenService;
 import pl.mariuszk.orderservice.model.frontend.order.employeepanel.OrderPanelDto;
 import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
+import pl.mariuszk.productservice.model.frontend.UpdateProductDto;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -49,5 +51,11 @@ public class EmployeePanelController {
     @GetMapping("/secure/products")
     public ResponseEntity<List<ProductDetailsDto>> getProducts() {
         return ResponseEntity.ok(productClient.getProductsForEmployeePanel());
+    }
+
+    @PostMapping("/secure/update-product")
+    public ResponseEntity<Void> updateProduct(@RequestBody @Valid UpdateProductDto updateProductDto) {
+        productClient.updateProduct(updateProductDto);
+        return ResponseEntity.ok().build();
     }
 }
