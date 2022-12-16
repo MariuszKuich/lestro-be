@@ -5,10 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import pl.mariuszk.employeepanelservice.feign.client.OrderClient;
+import pl.mariuszk.employeepanelservice.feign.client.ProductClient;
 import pl.mariuszk.orderservice.model.frontend.order.employeepanel.OrderStatusUpdateDto;
 import pl.mariuszk.employeepanelservice.model.frontend.TokenDto;
 import pl.mariuszk.employeepanelservice.service.security.TokenService;
 import pl.mariuszk.orderservice.model.frontend.order.employeepanel.OrderPanelDto;
+import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class EmployeePanelController {
 
     private final TokenService tokenService;
     private final OrderClient orderClient;
+    private final ProductClient productClient;
 
     @PostMapping("/login")
     public ResponseEntity<TokenDto> authenticateAndReturnJwtToken(Authentication authentication) {
@@ -41,5 +44,10 @@ public class EmployeePanelController {
     public ResponseEntity<Void> updateOrderStatus(@RequestBody OrderStatusUpdateDto orderStatusUpdateDto) {
         orderClient.updateOrderStatus(orderStatusUpdateDto);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/secure/products")
+    public ResponseEntity<List<ProductDetailsDto>> getProducts() {
+        return ResponseEntity.ok(productClient.getProductsForEmployeePanel());
     }
 }

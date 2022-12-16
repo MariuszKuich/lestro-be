@@ -40,4 +40,9 @@ public class ProductController {
     public Map<CompositionElemType, List<CompositionElementDto>> getAvailableConfiguratorOptions() {
         return productService.getAvailableConfiguratorOptions();
     }
+
+    @GetMapping("/employee-panel-list")
+    public List<ProductDetailsDto> getProductsForEmployeePanel() {
+        return productService.getProductsForEmployeePanel();
+    }
 }

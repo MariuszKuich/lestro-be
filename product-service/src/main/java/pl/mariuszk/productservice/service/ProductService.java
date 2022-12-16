@@ -7,6 +7,7 @@ import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
@@ -100,7 +101,7 @@ public class ProductService {
 
     public List<String> getGroupedPlantsFromEveryProduct() {
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
-        nativeSearchQueryBuilder.withSourceFilter(new FetchSourceFilter(new String[] { PLANTS.getName() }, null));
+        nativeSearchQueryBuilder.withSourceFilter(new FetchSourceFilter(new String[]{PLANTS.getName()}, null));
         nativeSearchQueryBuilder.withPageable(Pageable.ofSize(MAX_ES_PAGE_SIZE));
 
         SearchHits<ProductElastic> searchHits = elasticsearchRestTemplate.search(nativeSearchQueryBuilder.build(),
@@ -125,5 +126,11 @@ public class ProductService {
         return StreamSupport.stream(configuratorRepository.findAll().spliterator(), sequentialStream)
                 .map(elemElastic -> mapperFacade.map(elemElastic, CompositionElementDto.class))
                 .collect(Collectors.groupingBy(CompositionElementDto::getType));
+    }
+
+    public List<ProductDetailsDto> getProductsForEmployeePanel() {
+        return productRepository.findAll(Sort.by(CODE.getName()).ascending()).stream()
+                .map(productDetails -> mapperFacade.map(productDetails, ProductDetailsDto.class))
+                .collect(Collectors.toList());
     }
 }
