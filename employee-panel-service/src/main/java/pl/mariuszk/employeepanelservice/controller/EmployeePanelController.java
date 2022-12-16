@@ -58,4 +58,10 @@ public class EmployeePanelController {
         productClient.updateProduct(updateProductDto);
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping("/secure/delete-product/{productCode}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable String productCode) {
+        productClient.deleteProduct(productCode);
+        return ResponseEntity.ok().build();
+    }
 }

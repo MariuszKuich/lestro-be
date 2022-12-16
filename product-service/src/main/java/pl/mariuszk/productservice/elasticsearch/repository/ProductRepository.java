@@ -12,4 +12,6 @@ public interface ProductRepository extends ElasticsearchRepository<ProductElasti
     Optional<ProductElastic> findByCode(String code);
 
     List<ProductElastic> findAll(Sort sort);
+
+    void deleteByCode(String code);
 }

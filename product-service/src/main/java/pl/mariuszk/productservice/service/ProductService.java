@@ -146,4 +146,8 @@ public class ProductService {
 
         productRepository.save(productElastic);
     }
+
+    public void deleteProduct(String productCode) {
+        productRepository.deleteByCode(productCode);
+    }
 }

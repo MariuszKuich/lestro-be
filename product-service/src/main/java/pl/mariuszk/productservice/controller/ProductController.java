@@ -52,4 +52,9 @@ public class ProductController {
     public void updateProduct(@RequestBody @Valid UpdateProductDto updateProductDto) {
         productService.updateProduct(updateProductDto);
     }
+
+    @DeleteMapping("/delete-product/{productCode}")
+    public void deleteProduct(@PathVariable String productCode) {
+        productService.deleteProduct(productCode);
+    }
 }
