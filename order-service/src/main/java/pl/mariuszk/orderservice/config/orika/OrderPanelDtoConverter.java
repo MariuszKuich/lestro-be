@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 import static pl.mariuszk.elasticsearch.enums.ElasticsearchField.NAME;
 
 @RequiredArgsConstructor
-public class OrderPanelConverter extends CustomConverter<OrderElastic, OrderPanelDto> {
+public class OrderPanelDtoConverter extends CustomConverter<OrderElastic, OrderPanelDto> {
 
     private final OrderItemsService orderItemsService;
     private final ConverterService converterService;
@@ -31,7 +31,7 @@ public class OrderPanelConverter extends CustomConverter<OrderElastic, OrderPane
         return OrderPanelDto.builder()
                 .orderNo(orderElastic.getOrderNumber())
                 .createdDate(orderElastic.getCreatedTimestamp().toLocalDate())
-                .value(orderItemsService.getTotalOrderItemsValue(orderItems))
+                .value(orderItemsService.getTotalOrderItemsValueIncludingDeliveryCost(orderItems, orderElastic.getDeliveryMethod()))
                 .statusLabel(orderElastic.getStatus().getName())
                 .availableStatuses(converterService.getAvailableStatuses(orderElastic))
                 .isPaid(orderElastic.isPaid())

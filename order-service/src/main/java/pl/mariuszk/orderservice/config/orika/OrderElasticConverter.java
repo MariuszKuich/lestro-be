@@ -32,7 +32,7 @@ public class OrderElasticConverter extends CustomConverter<OrderElastic, OrderDt
         return OrderDto.builder()
                 .orderNumber(orderElastic.getOrderNumber())
                 .createdDate(orderElastic.getCreatedTimestamp().toLocalDate())
-                .value(orderItemsService.getTotalOrderItemsValue(orderItems))
+                .value(orderItemsService.getTotalOrderItemsValueIncludingDeliveryCost(orderItems, orderElastic.getDeliveryMethod()))
                 .isPaid(orderElastic.isPaid())
                 .statusLabel(orderElastic.getStatus().getName())
                 .deliveryLabel(orderElastic.getDeliveryMethod().getName())

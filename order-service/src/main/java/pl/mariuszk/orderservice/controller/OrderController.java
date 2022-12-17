@@ -28,7 +28,7 @@ public class OrderController {
 
     @GetMapping("/total-value/{orderNumber}")
     public BigDecimal getTotalOrderValue(@PathVariable long orderNumber) {
-        return orderItemsService.getTotalOrderItemsValue(orderNumber);
+        return orderItemsService.getTotalOrderItemsValueIncludingDeliveryCost(orderNumber);
     }
 
     @GetMapping("/order-history")
