@@ -24,9 +24,9 @@ public class ConfiguratorElementElastic {
     @Field(name = "code", type = FieldType.Keyword)
     private String code;
 
-    @Field(name = "name", type = FieldType.Keyword)
+    @Field(name = "name", type = FieldType.Keyword, index = false)
     private String name;
 
-    @Field(name = "price", type = FieldType.Double)
+    @Field(name = "price", type = FieldType.Double, index = false)
     private double price;
 }

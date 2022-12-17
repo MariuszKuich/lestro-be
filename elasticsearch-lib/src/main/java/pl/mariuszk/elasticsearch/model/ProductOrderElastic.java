@@ -31,21 +31,21 @@ public class ProductOrderElastic {
     @Field(name = "name", type = FieldType.Keyword)
     private String name;
 
-    @Field(name = "img", type = FieldType.Text)
+    @Field(name = "img", type = FieldType.Text, index = false)
     private String img;
 
     @Field(name = "price", type = FieldType.Double)
     private double price;
 
-    @Field(name = "plantName", type = FieldType.Keyword)
+    @Field(name = "plantName", type = FieldType.Keyword, index = false)
     private String plantName;
 
-    @Field(name = "decorationName", type = FieldType.Keyword)
+    @Field(name = "decorationName", type = FieldType.Keyword, index = false)
     private String decorationName;
 
-    @Field(name = "ornamentName", type = FieldType.Keyword)
+    @Field(name = "ornamentName", type = FieldType.Keyword, index = false)
     private String ornamentName;
 
-    @Field(name = "potName", type = FieldType.Keyword)
+    @Field(name = "potName", type = FieldType.Keyword, index = false)
     private String potName;
 }
