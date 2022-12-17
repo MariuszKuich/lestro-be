@@ -1,5 +1,0 @@
-server:
-  port: 50004
-spring:
-  application:
-    name: pricing-service

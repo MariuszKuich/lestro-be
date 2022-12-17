@@ -19,7 +19,6 @@
         <module>delivery-service</module>
         <module>frontend-communication-service</module>
         <module>payment-service</module>
-        <module>pricing-service</module>
         <module>product-service</module>
         <module>registry-service</module>
         <module>employee-panel-service</module>

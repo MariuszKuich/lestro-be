@@ -40,16 +40,6 @@ services:
       - 50003:50003
     networks:
       - spring-cloud-network
-  pricing-service:
-    container_name: pricing-service
-    build:
-      context: pricing-service
-      dockerfile: Dockerfile
-    image: pricing-service:latest
-    ports:
-      - 50004:50004
-    networks:
-      - spring-cloud-network
   product-service:
     container_name: product-service
     build:
