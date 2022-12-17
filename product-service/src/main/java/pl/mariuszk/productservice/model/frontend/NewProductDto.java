@@ -14,17 +14,29 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateProductDto {
+public class NewProductDto {
 
     @NotBlank
-    private String code;
+    private String name;
 
     @NotBlank
     private String description;
 
+    @Min(1)
+    private int width;
+
+    @Min(1)
+    private int height;
+
+    @Min(1)
+    private int length;
+
     @NotNull
     @Min(1)
     private BigDecimal price;
+
+    @NotEmpty
+    private List<String> plants;
 
     @NotEmpty
     private List<String> imgLinks;

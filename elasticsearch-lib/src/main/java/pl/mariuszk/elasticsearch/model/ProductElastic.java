@@ -1,6 +1,7 @@
 package pl.mariuszk.elasticsearch.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -13,11 +14,15 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Document(indexName = "product-index")
 public class ProductElastic {
 
     @Id
     private String id;
+
+    @Field(name = "no", type = FieldType.Long)
+    private long no;
 
     @Field(name = "code", type = FieldType.Keyword)
     private String code;

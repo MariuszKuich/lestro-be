@@ -16,6 +16,7 @@
 curl -X PUT http://localhost:9200/_index_template/product-template -H "Content-Type: application/json" -d @templates/product-template.json
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
 {
+  "no": 1,
   "code": "STR-1",
   "name": "Stroik S\u0142onecznikowy [OZDOBY]",
   "description": "Stroik z\u0142o\u017Cony z pi\u0119ciu s\u0142onecznik\u00F3w umieszczonych w blaszanym pojemniku. Kompozycja udekorowana jest sztucznymi kolbami kukurydzy oraz dynami.",
@@ -34,6 +35,7 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
 }'
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
 {
+  "no": 2,
   "code": "STR-2",
   "name": "R\u00F3\u017Cnokolorowe Pude\u0142ko",
   "description": "Stroik z\u0142o\u017Cony z r\u00F3\u017Cnokolorowych r\u00F3\u017C oraz tulipan\u00F3w umieszczonych w bogato zdobionym pude\u0142ku.",
@@ -53,6 +55,7 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
 }'
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
 {
+  "no": 3,
   "code": "STR-3",
   "name": "Bogaty Bukiet",
   "description": "Stroik sk\u0142adaj\u0105cy si\u0119 z wielu r\u00F3\u017Cnokolorowych kwiat\u00F3w umieszczonych w wazonie. Idealny na wesele.",
@@ -73,6 +76,7 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
 }'
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
 {
+  "no": 4,
   "code": "STR-4",
   "name": "Powiew Wiosny",
   "description": "Minimalistyczny stroik z\u0142o\u017Cony z ro\u015Blin polnych umieszczonych w szklanym s\u0142oiku. Zwiastun wiosny.",
@@ -89,6 +93,7 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
 }'
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
 {
+  "no": 5,
   "code": "STR-5",
   "name": "R\u00F3\u017Cany Upominek",
   "description": "Stroik z\u0142o\u017Cony z barwnych r\u00F3\u017C umieszczonych w bia\u0142ym drewnianym koszu. Idealny upominek dla drugiej po\u0142\u00F3wki.",
@@ -105,6 +110,7 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
 }'
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
 {
+  "no": 6,
   "code": "STR-6",
   "name": "Stroik S\u0142onecznikowy [BEZ OZD\u00D3B]",
   "description": "Stroik z\u0142o\u017Cony z sze\u015Bciu s\u0142onecznik\u00F3w umieszczonych w bia\u0142ym wazonie. Wariant bez ozd\u00F3b.",
@@ -121,6 +127,7 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
 }'
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
 {
+  "no": 7,
   "code": "STR-7",
   "name": "Dary Natury",
   "description": "Stroik z\u0142o\u017Cony z r\u00F3\u017Cnokolorowych ro\u015Blin polnych umieszczonych w wiklinowym koszu. Idealny spos\u00F3b na przywitanie wiosny.",
@@ -137,6 +144,7 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
 }'
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
 {
+  "no": 8,
   "code": "STR-8",
   "name": "Wenecja",
   "description": "Stroik z\u0142o\u017Cony z trzech czerwonych r\u00F3\u017C umieszczonych w bogato zdobionym szklanym wazonie. Idealny prezent na walentynki.",
@@ -153,6 +161,7 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
 }'
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
 {
+  "no": 9,
   "code": "STR-9",
   "name": "Liliowe Kolory",
   "description": "Stroik z\u0142o\u017Cony z niebieskich, bia\u0142ych oraz filetowych lilii umieszczonych w minimalistycznym szklanym wazonie.",
@@ -169,6 +178,7 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
 }'
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
 {
+  "no": 10,
   "code": "STR-10",
   "name": "Kolory w Wiklinie",
   "description": "Stroik z\u0142o\u017Cony z wielokolorowych r\u00F3\u017C i kwiat\u00F3w polnych umieszczony w wiklinowym koszu o wymiarach 30x30x30 [cm].",
@@ -186,6 +196,7 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
 }'
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
 {
+  "no": 11,
   "code": "STR-11",
   "name": "Elegancja w R\u00F3\u017Cu",
   "description": "Stroik z\u0142o\u017Cony z bia\u0142o-r\u00F3\u017Cowych hortensji i kwiat\u00F3w polnych umieszczonych w porcelanowym wazonie imituj\u0105cym imbryk.",
@@ -203,6 +214,7 @@ curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: applicat
 }'
 curl -X POST http://localhost:9200/product-index/_doc -H "Content-Type: application/json; charset=UTF-8" -d '
 {
+  "no": 12,
   "code": "STR-12",
   "name": "Minimalistyczna Biel",
   "description": "Stroik, w kt\u00F3rego sk\u0142ad wchodz\u0105 stokrotka, rumianek oraz jastrun. Kwiaty umieszczone s\u0105 w niewielkim porcelanowym wazonie. Kompozycja idealna dla mi\u0142o\u015Bnik\u00F3w bieli.",

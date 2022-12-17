@@ -20,10 +20,7 @@ import pl.mariuszk.common.exceptions.ProductNotFoundException;
 import pl.mariuszk.elasticsearch.model.ProductElastic;
 import pl.mariuszk.productservice.elasticsearch.repository.ConfiguratorRepository;
 import pl.mariuszk.productservice.elasticsearch.repository.ProductRepository;
-import pl.mariuszk.productservice.model.frontend.CompositionElementDto;
-import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
-import pl.mariuszk.productservice.model.frontend.ProductDto;
-import pl.mariuszk.productservice.model.frontend.UpdateProductDto;
+import pl.mariuszk.productservice.model.frontend.*;
 import pl.mariuszk.productservice.request.ProductRequest;
 
 import java.util.List;
@@ -149,5 +146,10 @@ public class ProductService {
 
     public void deleteProduct(String productCode) {
         productRepository.deleteByCode(productCode);
+    }
+
+    public void addNewProduct(NewProductDto newProductDto) {
+        ProductElastic productElastic = mapperFacade.map(newProductDto, ProductElastic.class);
+        productRepository.save(productElastic);
     }
 }

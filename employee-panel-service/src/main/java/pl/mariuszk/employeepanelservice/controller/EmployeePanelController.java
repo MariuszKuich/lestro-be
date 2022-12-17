@@ -10,6 +10,7 @@ import pl.mariuszk.orderservice.model.frontend.order.employeepanel.OrderStatusUp
 import pl.mariuszk.employeepanelservice.model.frontend.TokenDto;
 import pl.mariuszk.employeepanelservice.service.security.TokenService;
 import pl.mariuszk.orderservice.model.frontend.order.employeepanel.OrderPanelDto;
+import pl.mariuszk.productservice.model.frontend.NewProductDto;
 import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
 import pl.mariuszk.productservice.model.frontend.UpdateProductDto;
 
@@ -62,6 +63,12 @@ public class EmployeePanelController {
     @DeleteMapping("/secure/delete-product/{productCode}")
     public ResponseEntity<Void> deleteProduct(@PathVariable String productCode) {
         productClient.deleteProduct(productCode);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/secure/new-product")
+    public ResponseEntity<Void> addNewProduct(@RequestBody @Valid NewProductDto newProductDto) {
+        productClient.addNewProduct(newProductDto);
         return ResponseEntity.ok().build();
     }
 }

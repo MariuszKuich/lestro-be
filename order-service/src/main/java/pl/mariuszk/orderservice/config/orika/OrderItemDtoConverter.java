@@ -20,7 +20,7 @@ import pl.mariuszk.orderservice.model.frontend.order.NewOrderItemDto;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.termQuery;
-import static pl.mariuszk.common.constants.CustomProductConstants.CUSTOM_PRODUCT_CODE_PREFIX;
+import static pl.mariuszk.common.constants.ProductsConstants.CUSTOM_PRODUCT_CODE_PREFIX;
 import static pl.mariuszk.common.enums.CompositionElemType.*;
 import static pl.mariuszk.elasticsearch.enums.ElasticsearchField.*;
 import static pl.mariuszk.elasticsearch.enums.ElasticsearchIndex.CONFIGURATOR_INDEX;

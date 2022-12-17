@@ -12,6 +12,10 @@
         "enabled": true
       },
       "properties": {
+        "no": {
+          "type": "long",
+          "index": true
+        },
         "code": {
           "type": "keyword",
           "index": true

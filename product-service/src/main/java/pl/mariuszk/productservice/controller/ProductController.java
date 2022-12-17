@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import pl.mariuszk.common.enums.CompositionElemType;
-import pl.mariuszk.productservice.model.frontend.CompositionElementDto;
-import pl.mariuszk.productservice.model.frontend.ProductDetailsDto;
-import pl.mariuszk.productservice.model.frontend.ProductDto;
-import pl.mariuszk.productservice.model.frontend.UpdateProductDto;
+import pl.mariuszk.productservice.model.frontend.*;
 import pl.mariuszk.productservice.request.ProductRequest;
 import pl.mariuszk.productservice.service.ProductService;
 
@@ -56,5 +53,10 @@ public class ProductController {
     @DeleteMapping("/delete-product/{productCode}")
     public void deleteProduct(@PathVariable String productCode) {
         productService.deleteProduct(productCode);
+    }
+
+    @PostMapping("/new-product")
+    public void addNewProduct(@RequestBody @Valid NewProductDto newProductDto) {
+        productService.addNewProduct(newProductDto);
     }
 }
