@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 public enum OrderStatus {
     NEW("Nowe", 1),
     PAID("Opłacone", 2),
-    IN_PROGRESS("W trakcie tralizacji", 3),
+    IN_PROGRESS("W trakcie realizacji", 3),
     SENT("Wysłane", 4),
     RECEIVED("Odebrane", 5);
 
