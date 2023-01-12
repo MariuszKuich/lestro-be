@@ -1,5 +1,7 @@
 server:
   port: 50007
 spring:
+  profiles:
+    active: local
   application:
     name: order-service
